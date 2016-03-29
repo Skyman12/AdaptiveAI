@@ -1,5 +1,7 @@
 package Abilities;
 
+import java.util.ArrayList;
+
 import General.AttackType;
 import General.Attacks;
 import General.Class;

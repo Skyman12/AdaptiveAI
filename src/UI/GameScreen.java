@@ -59,15 +59,15 @@ public class GameScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		team1List = new ArrayList<>();
+		team1List.add(new Mage(Team.TEAM1));
 		team1List.add(new Warrior(Team.TEAM1));
-		team1List.add(new Warrior(Team.TEAM1));
-		team1List.add(new Warrior(Team.TEAM1));
+		team1List.add(new Rogue(Team.TEAM1));
 		team1List.add(new Warrior(Team.TEAM1));
 		
 		team2List = new ArrayList<>();
+		team2List.add(new Mage(Team.TEAM2));
 		team2List.add(new Warrior(Team.TEAM2));
-		team2List.add(new Warrior(Team.TEAM2));
-		team2List.add(new Warrior(Team.TEAM2));
+		team2List.add(new Rogue(Team.TEAM2));
 		team2List.add(new Warrior(Team.TEAM2));
 		
 		allCharacters = new ArrayList<>();

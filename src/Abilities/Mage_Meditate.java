@@ -1,5 +1,7 @@
 package Abilities;
 
+import java.util.ArrayList;
+
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -32,6 +34,15 @@ public class Mage_Meditate extends Attacks {
 	@Override
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
+	}
+	
+	@Override
+	public boolean getSoftCap() {
+		if (theAttacker.currentEnergy < 60) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }

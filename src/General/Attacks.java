@@ -43,6 +43,19 @@ public abstract class Attacks {
 		return string;
 	}
 	
+	public boolean getHardCap() {
+		// Check for energy cap - do they have enough energy
+		if (theAttacker.currentEnergy < cost) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public boolean getSoftCap() {
+		return true;
+	}
+	
 	public String getToolTip() {
 		String s = "<html> <b>";
 		s += attackName + "</b><br><i>";
@@ -131,18 +144,28 @@ public abstract class Attacks {
 		return newPlayers;
 	}
 	
-	public void restore (int healthAmount, int shieldAmount, int energyAmount, Class players) {
+	public ArrayList<Class> getAliveAllies(Class attacker) {
 		ArrayList<Class> newPlayers = new ArrayList<>();
-		newPlayers.add(players);
-		restore(healthAmount, shieldAmount, energyAmount, newPlayers);
+		for (Class player : allPlayers) {
+			if (player.team == attacker.team && player.alive && player != attacker) newPlayers.add(player);
+		}
+		
+		return newPlayers;
 	}
 	
-	public void restore (int healthAmount, int shieldAmount, int energyAmount, ArrayList<Class> players) {
-		for (Class player : players) {
-			player.currentEnergy = Math.min(player.baseEnergy, player.currentEnergy + energyAmount);
-			player.currentShield = Math.min(player.baseShield, player.currentShield + shieldAmount);
-			player.currentHealth = Math.min(player.baseHealth, player.currentHealth + healthAmount);
+	public ArrayList<Class> getAlivePlayers(Class attacker) {
+		ArrayList<Class> newPlayers = new ArrayList<>();
+		for (Class player : allPlayers) {
+			if (player.alive && player != attacker) newPlayers.add(player);
 		}
+		
+		return newPlayers;
+	}
+	
+	public void restore (int healthAmount, int shieldAmount, int energyAmount, Class target) {
+		target.currentEnergy = Math.min(target.baseEnergy, target.currentEnergy + energyAmount);
+		target.currentShield = Math.min(target.baseShield, target.currentShield + shieldAmount);
+		target.currentHealth = Math.min(target.baseHealth, target.currentHealth + healthAmount);
 	}
 	
 	public void stun (Class attacker, Class target, int damage, int turnsStunned) {
@@ -150,6 +173,19 @@ public abstract class Attacks {
 		if (target.turnsCleansed > 0) return;
 		
 		target.turnsStunned = turnsStunned;
+	}
+	
+	public void cleanse (Class attacker, Class target, int turnsCleansed) {
+		target.turnsStunned = 0;
+		target.turnsConfused = 0;
+		target.turnsCleansed = turnsCleansed;
+	}
+	
+	public void confuse (Class attacker, Class target, int damage, int turnsConfused) {
+		dealDamage(attacker, target, damage, 0);
+		if (target.turnsCleansed > 0) return;
+		
+		target.turnsConfused = turnsConfused;
 	}
 	
 	public String buildAttackString(Class attacker, Class target, int damage) {
