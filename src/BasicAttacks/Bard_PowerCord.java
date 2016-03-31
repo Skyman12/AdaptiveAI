@@ -16,7 +16,7 @@ public class Bard_PowerCord extends Attacks {
 		attackName = "Power Cord";
 		attackDescription = "Chose an enemy, deals small damage, 50% chance that enemy is stuned for the rest of this turn.";
 	
-		damage = 10;
+		damage = 20;
 		speed = 2;
 		critChance = 0;
 		numOfTargets = 1;

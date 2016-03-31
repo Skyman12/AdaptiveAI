@@ -1,5 +1,6 @@
 package General;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -211,6 +212,19 @@ public class Game {
 			processRound();
 		}	
 		
+		try {
+			updateFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return winningTeam;
+	}
+
+	private void updateFile() throws IOException {
+		for (Class player : players) {
+			player.updateFile();
+		}
+		
 	}
 }

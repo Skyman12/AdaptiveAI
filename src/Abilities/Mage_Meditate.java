@@ -10,7 +10,7 @@ public class Mage_Meditate extends Attacks {
 		attackType = AttackType.ABILITIES;
 		
 		attackName = "Meditate";
-		attackDescription = "Regain 30 and a +20 shield bonus.";
+		attackDescription = "Regain +10 energy and a +10 shield bonus.";
 	
 	
 		damage = 0;
@@ -24,7 +24,7 @@ public class Mage_Meditate extends Attacks {
 	protected String attack(Class target) {
 		if (theAttacker.turnsStunned > 0) return "No attack";
 		
-		restore(0, 10, 30, theAttacker);
+		restore(0, 10, 10, theAttacker);
 		
 		return "Used " + attackName + "\n";
 	}

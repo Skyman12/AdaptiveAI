@@ -99,8 +99,8 @@ public abstract class Class {
 	
 	public int getCurrentPlayerScore() {	
 		int score = 0;
-		score += currentHealth;
-		score += (int) currentShield;
+		score += currentHealth * 4;
+		score += (int) currentShield * 3;
 		score += currentEnergy;
 		score += (int) bonusCritChance * .5;
 		score += (int) bonusCritChanceTurns * 25;
@@ -181,14 +181,14 @@ public abstract class Class {
 			}
 		}
 		
-		try {
-			updateFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			updateFile();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
-	private void updateFile() throws IOException {
+	public void updateFile() throws IOException {
 		FileWriter fileWriter = new FileWriter("ability_weights.txt");
 		
 		for (Attacks attack : basicAttackList) {

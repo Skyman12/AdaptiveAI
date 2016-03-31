@@ -14,7 +14,7 @@ public class Bard_EnergyBoost extends Attacks {
 		attackType = AttackType.BASIC_ATTACK;
 	
 		attackName = "Energy Boost";
-		attackDescription = "Choose a friendly, boost their energy by 30.";
+		attackDescription = "Choose a friendly, boost their energy by 20.";
 	
 		damage = 0;
 		speed = 5;
@@ -27,7 +27,7 @@ public class Bard_EnergyBoost extends Attacks {
 		String result = doBeginningActions(theAttacker, target);
 		if (!result.equals("Success")) return result;
 		
-		restore(0, 0, 30, theTarget);	
+		restore(0, 0, 20, theTarget);	
 		
 		return "Used " + attackName + " on " + theTarget.name + " -- Restored energy\n";
 	}

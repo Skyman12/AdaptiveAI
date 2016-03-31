@@ -14,7 +14,7 @@ public class Bard_ShieldBoost extends Attacks {
 		attackType = AttackType.BASIC_ATTACK;
 	
 		attackName = "Shield Boost";
-		attackDescription = "Choose a friendly, boost their shield by 30.";
+		attackDescription = "Choose a friendly, boost their shield by 20.";
 	
 		damage = 0;
 		speed = 5;
@@ -27,7 +27,7 @@ public class Bard_ShieldBoost extends Attacks {
 		String result = doBeginningActions(theAttacker, target);
 		if (!result.equals("Success")) return result;
 		
-		restore(0, 30, 0, theTarget);	
+		restore(0, 20, 0, theTarget);	
 		
 		return "Used " + attackName + " on " + theTarget.name + " -- Restored shield\n";
 	}
