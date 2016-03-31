@@ -13,7 +13,7 @@ public class Counter extends Attacks {
 		attackType = AttackType.BASIC_ATTACK;
 		
 		attackName = "Counter";
-		attackDescription = "If hit with a basic attack this round, deal 1/2 of that damage back to the player.";
+		attackDescription = "If hit with a basic attack this round, deal that damage back to the player.";
 	
 		damage = 0;
 		speed = 0;

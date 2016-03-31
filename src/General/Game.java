@@ -8,6 +8,7 @@ public class Game {
 	public BoardManager boardManager;
 	public ArrayList<Class> players;
 	public boolean gameOver;
+	public int roundCount;
 	public Team winningTeam;
 	public boolean roundInProgress;
 	
@@ -18,6 +19,7 @@ public class Game {
 		gameOver = false;
 		winningTeam = null;
 		roundInProgress = false;
+		roundCount = 0;
 	}
 	
 	public void resetGame() {
@@ -27,7 +29,8 @@ public class Game {
 		
 		gameOver = false;
 		roundInProgress = false;
-		roundAttacks.clear();;
+		roundAttacks.clear();
+		roundCount = 0;
 	}
 	
 	public void startRound() {
@@ -58,18 +61,22 @@ public class Game {
 		orderAttacks();
 		
 		for (Attacks attack : roundAttacks) {
-			System.out.println(attack.executeAttack());
+			attack.executeAttack();
 			attack.theTargets.clear();
 			checkForGameOver();
 			if (gameOver) {
-				System.out.println("Game Over: " + winningTeam.toString() + " wins.");
 				return;
 			}
 		}
 		
-		System.out.println("---- end of round -----");
-		
 		roundAttacks.clear();
+		roundCount++;
+		
+		if (roundCount > 2000) {
+			gameOver = true;
+			winningTeam = Team.TIE_GAME;
+			return;
+		}
 		
 		for (Class c : players) {
 			c.processRound();
@@ -87,7 +94,6 @@ public class Game {
 	
 	private void updateGameOver() {
 		boardManager.gameOverUpdate("Game Over: " + winningTeam.toString() + " wins.");
-		System.out.println("Game Over: " + winningTeam.toString() + " wins.");
 	}
 	
 	private void checkForGameOver() {
@@ -139,9 +145,11 @@ public class Game {
 		boardManager.updateButtons();
 	}
 	
-	public void simulateGame() {
+	public Team simulateGame() {
 		while (!gameOver) {
 			processRound();
 		}	
+		
+		return winningTeam;
 	}
 }

@@ -23,7 +23,7 @@ public class Warrior extends Class {
 		currentHealth = baseHealth;
 		baseShield = 150;
 		currentShield = baseShield;
-		shieldRechargeRate = 15;
+		shieldRechargeRate = 10;
 		baseEnergy = 75;
 		currentEnergy = baseEnergy;
 		energyRechargeRate = 5;

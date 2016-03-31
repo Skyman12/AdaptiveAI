@@ -17,7 +17,7 @@ public class Warrior_HeavySlash extends Attacks {
 	
 		damage = 25;
 		speed = 7;
-		critChance = 30;
+		critChance = 50;
 		numOfTargets = 1;
 	}
 	

@@ -2,6 +2,7 @@ package UI;
 
 import java.util.ArrayList;
 
+import Classes.Bard;
 import Classes.Mage;
 import Classes.Priest;
 import Classes.Warlock;
@@ -21,17 +22,17 @@ public class GameSimulatorCommandLine {
 		players.add(new Mage(Team.TEAM1, PlayerType.STATIC_AI));
 		players.add(new Warrior(Team.TEAM1, PlayerType.STATIC_AI));
 		players.add(new Warlock(Team.TEAM1, PlayerType.STATIC_AI));
-		players.add(new Priest(Team.TEAM1, PlayerType.STATIC_AI));
+		players.add(new Bard(Team.TEAM1, PlayerType.STATIC_AI));
 		
 		players.add(new Mage(Team.TEAM2, PlayerType.STATIC_AI));
 		players.add(new Warrior(Team.TEAM2, PlayerType.STATIC_AI));
 		players.add(new Warlock(Team.TEAM2, PlayerType.STATIC_AI));
-		players.add(new Priest(Team.TEAM2, PlayerType.STATIC_AI));
+		players.add(new Bard(Team.TEAM2, PlayerType.STATIC_AI));
 		
 		Game game = new Game(new BoardManager(), players);
 		
 		GameSimulator gameSimluator = new GameSimulator(game);
-		gameSimluator.simulateManyGames(20);
+		gameSimluator.simulateManyGames(10000);
 
 	}
 

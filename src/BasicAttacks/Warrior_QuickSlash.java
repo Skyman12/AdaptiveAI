@@ -15,7 +15,7 @@ public class Warrior_QuickSlash extends Attacks {
 		attackName = "Quick Slash";
 		attackDescription = "Choose an enemy, deal damage to that player.";
 	
-		damage = 10;
+		damage = 15;
 		speed = 4;
 		critChance = 20;
 		numOfTargets = 1;
