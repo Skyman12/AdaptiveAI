@@ -36,5 +36,13 @@ public abstract class Elements {
 		shieldBar.setValue(className.currentShield);
 		energyBar.setValue(className.currentEnergy);
 	}
+	
+	public void remove() {
+		btnTarget.setVisible(false);
+		scroll.setVisible(false);
+		healthBar.setVisible(false);
+		shieldBar.setVisible(false);
+		energyBar.setVisible(false);
+	}
 
 }

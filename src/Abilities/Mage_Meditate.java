@@ -45,4 +45,9 @@ public class Mage_Meditate extends Attacks {
 		return false;
 	}
 
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
+	}
+
 }

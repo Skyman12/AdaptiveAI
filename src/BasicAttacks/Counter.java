@@ -1,5 +1,8 @@
 package BasicAttacks;
 
+import java.util.ArrayList;
+
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -20,16 +23,27 @@ public class Counter extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if (theAttacker.turnsStunned > 0) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		target.countered = true;
+		theTarget.countered = true;
 		
-		return "Countered " + "\n";
+		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 
 	@Override
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.ROGUE);
+		parameters.add(AIAttackOptions.WARRIOR);
+		parameters.add(AIAttackOptions.MAGE);
+		parameters.add(AIAttackOptions.WARLOCK);
+		chooseAttackTargetAI(parameters);
 	}
 
 }

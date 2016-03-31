@@ -2,6 +2,9 @@ package General;
 
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import UI.CharacterElement;
 import UI.ComputerCharacterElement;
 
@@ -9,6 +12,8 @@ public class BoardManager {
 	
 	private ArrayList<CharacterElement> playerElements;
 	private ArrayList<ComputerCharacterElement> computerElements;
+	private JLabel winningText;
+	private JButton continueButton;
 	
 	public void updateBoard() {
 		for (CharacterElement c : playerElements) {
@@ -26,9 +31,18 @@ public class BoardManager {
 		}
 	}
 	
-	public void addElements(ArrayList<CharacterElement> playerElements, ArrayList<ComputerCharacterElement> computerElements) {
+	public void gameOverUpdate(String text) {
+		winningText.setVisible(true);
+		winningText.setText(text);
+		continueButton.setVisible(false);
+	}
+	
+	public void addElements(ArrayList<CharacterElement> playerElements, ArrayList<ComputerCharacterElement> computerElements,
+			JLabel winningText, JButton continueButton) {
 		this.playerElements = playerElements;
 		this.computerElements = computerElements;
+		this.winningText = winningText;
+		this.continueButton = continueButton;
 	}
 
 	public void addString(Class theAttacker, String string) {

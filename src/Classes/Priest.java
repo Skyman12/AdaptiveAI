@@ -8,11 +8,15 @@ import BasicAttacks.Priest_Cleanse;
 import BasicAttacks.Priest_Heal;
 import BasicAttacks.Priest_Smite;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.PriestTemplate;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Priest extends Class {
 	
-	public Priest(Team whichTeam) {
+	public Priest(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Priest";
 		
@@ -37,6 +41,11 @@ public class Priest extends Class {
 		abilitiesList.add(new Priest_HealingRing(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new PriestTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }

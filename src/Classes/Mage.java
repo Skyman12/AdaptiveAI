@@ -8,11 +8,15 @@ import BasicAttacks.Mage_FireBall;
 import BasicAttacks.Mage_FlameTunnel;
 import BasicAttacks.Mage_ThunderStrike;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.MageTemplate;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Mage extends Class {
 	
-	public Mage(Team whichTeam) {
+	public Mage(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Mage";
 		
@@ -37,6 +41,11 @@ public class Mage extends Class {
 		abilitiesList.add(new Mage_Meditate(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new MageTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }

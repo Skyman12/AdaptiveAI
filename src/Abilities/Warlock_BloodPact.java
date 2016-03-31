@@ -23,13 +23,14 @@ public class Warlock_BloodPact extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		int damageDealt = dealDamage(theAttacker, target, damage, critChance);
+		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
 		restore(damageDealt, 0, 0, theAttacker);
 
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 
 	@Override
@@ -47,6 +48,11 @@ public class Warlock_BloodPact extends Attacks {
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
 	}
 
 }

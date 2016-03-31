@@ -23,9 +23,10 @@ public class Bard_BuffAuora extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		restore(0, 20, 20, target);
+		restore(0, 20, 20, theTarget);
 		
 		return "Used " + attackName + " on " + target.name + "\n";
 	}
@@ -45,6 +46,11 @@ public class Bard_BuffAuora extends Attacks {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public void chooseAITarget() {
+		theTargets.addAll(getAliveAllies(theAttacker));
 	}
 
 }

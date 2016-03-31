@@ -1,7 +1,9 @@
 package BasicAttacks;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -22,16 +24,37 @@ public class Bard_ShieldBoost extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		restore(0, 30, 0, target);	
+		restore(0, 30, 0, theTarget);	
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Restored shield\n";
 	}
 	
 	@Override
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
+	}
+	
+	@Override
+	public boolean getSoftCap() {
+		ArrayList<Class> players = getAliveAllies(theAttacker);
+		players.add(theAttacker);
+		for (Class p : players) {
+			if (p.baseShield - p.currentShield > 30) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.LOWEST_SHIELD);
+		chooseSupportTargetAI(parameters);
 	}
 
 }

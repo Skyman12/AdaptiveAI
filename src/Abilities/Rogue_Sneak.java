@@ -34,4 +34,17 @@ public class Rogue_Sneak extends Attacks {
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
 	}
+	
+	public boolean getSoftCap() { 
+		if (theAttacker.bonusCritChanceTurns > 0) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
+	}
 }

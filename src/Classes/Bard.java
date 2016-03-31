@@ -8,11 +8,15 @@ import BasicAttacks.Bard_EnergyBoost;
 import BasicAttacks.Bard_PowerCord;
 import BasicAttacks.Bard_ShieldBoost;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.BardTemplate;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Bard extends Class {
 	
-	public Bard(Team whichTeam) {
+	public Bard(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Bard";
 		
@@ -37,6 +41,11 @@ public class Bard extends Class {
 		abilitiesList.add(new Bard_MassConfusion(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new BardTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }

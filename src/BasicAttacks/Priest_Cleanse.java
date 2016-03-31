@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import General.AttackType;
 import General.Attacks;
@@ -22,11 +23,12 @@ public class Priest_Cleanse extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		cleanse(theAttacker, target, 0);
+		cleanse(theAttacker, theTarget, 0);
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 	
 	@Override
@@ -35,15 +37,27 @@ public class Priest_Cleanse extends Attacks {
 	}
 	
 	@Override
-	public int getSoftCap() {
+	public boolean getSoftCap() {
 		ArrayList<Class> players = getAliveAllies(theAttacker);
 		for (Class p : players) {
 			if ((p.turnsStunned > 0 || p.turnsConfused > 0) && p != theAttacker) {
-				return 2;
+				return true;
 			}
 		}
 		
-		return 0;
+		return false;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<Class> players = getAliveAllies(theAttacker);
+		Collections.shuffle(players);
+		for (Class p : players) {
+			if (p.turnsStunned > 0 || p.turnsConfused > 0) {
+				theTargets.add(p);
+				return;
+			}
+		}	
 	}
 
 }

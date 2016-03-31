@@ -3,6 +3,7 @@ package BasicAttacks;
 import java.util.ArrayList;
 import java.util.Random;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -23,11 +24,12 @@ public class Mage_ThunderStrike extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		dealDamage(theAttacker, target, damage, critChance);
+		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 	
 	@Override
@@ -44,6 +46,11 @@ public class Mage_ThunderStrike extends Attacks {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
 	}
 
 }

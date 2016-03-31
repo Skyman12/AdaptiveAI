@@ -3,6 +3,7 @@ package Abilities;
 
 import java.util.ArrayList;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -24,11 +25,12 @@ public class Priest_HolyShield extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
 		restore(40, 40, 0, theAttacker);
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 
 
@@ -48,6 +50,14 @@ public class Priest_HolyShield extends Attacks {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.LOWEST_HEALTH);
+		parameters.add(AIAttackOptions.LOWEST_SHIELD);
+		chooseSupportTargetAI(parameters);
 	}
 
 }

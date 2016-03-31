@@ -1,5 +1,8 @@
 package Abilities;
 
+import java.util.ArrayList;
+
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -18,19 +21,30 @@ public class Rogue_Stun extends Attacks {
 		critChance = 0;
 		numOfTargets = 1;
 	}
-	
+
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		stun (theAttacker, target, damage, 2);
+		stun (theAttacker, theTarget, damage, 2);
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Stunned target \n";
 	}
 	
 	@Override
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.PRIEST);
+		parameters.add(AIAttackOptions.BARD);
+		parameters.add(AIAttackOptions.MAGE);
+		parameters.add(AIAttackOptions.RANDOM);
+		chooseAttackTargetAI(parameters);
 	}
 
 }

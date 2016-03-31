@@ -4,6 +4,7 @@ package Abilities;
 import java.util.ArrayList;
 import java.util.Random;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -25,14 +26,15 @@ public class Priest_LifeTransfer extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
-
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
+		
 		Random random = new Random();
 		int bonus = random.nextInt(10) + 10;
 		
 		restore(30 + bonus, 0, 0, theAttacker);
 		
-		return "Used " + attackName + " on " + target.name + " --- Healed for " + bonus + 30 + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " --- Healed for " + bonus + 30 + "\n";
 	}
 
 
@@ -52,6 +54,13 @@ public class Priest_LifeTransfer extends Attacks {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.LOWEST_HEALTH);
+		chooseSupportTargetAI(parameters);
 	}
 
 }

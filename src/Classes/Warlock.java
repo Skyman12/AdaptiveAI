@@ -8,11 +8,14 @@ import BasicAttacks.Warlock_Corruption;
 import BasicAttacks.Warlock_LifeTap;
 import BasicAttacks.Warlock_MindZap;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Warlock extends Class {
 	
-	public Warlock(Team whichTeam) {
+	public Warlock(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Warlock";
 		
@@ -37,6 +40,11 @@ public class Warlock extends Class {
 		abilitiesList.add(new Warlock_BloodPact(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new WarriorTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }

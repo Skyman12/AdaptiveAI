@@ -1,5 +1,9 @@
 package General;
 import java.util.ArrayList;
+import java.util.Random;
+
+import WeightTemplates.TemplateType;
+import WeightTemplates.WeightTemplate;
 
 public abstract class Class {
 	
@@ -35,6 +39,10 @@ public abstract class Class {
 	
 	public String name;
 	
+	public WeightTemplate weightTemplate;
+	
+	public PlayerType playerType;
+	
 	public Class() {
 		bonusCritChance = 0;
 		bonusCritChanceTurns = 0;
@@ -68,6 +76,95 @@ public abstract class Class {
 		lastLife = false;
 		invunerable = false;
 		countered = false;
+	}
+	
+	public void assignWeights(TemplateType type) {
+		ArrayList<Integer> weights = null;
+		switch (type) {
+			case AGGRESSIVE:
+				weights = weightTemplate.getAggressiveTemplate();
+				break;
+			case DEFENSIVE:
+				weights = weightTemplate.getDefensiveTemplate();
+				break;
+			case BALANCED:
+				weights = weightTemplate.getBalancedTemplate();
+				break;
+			case CC:
+				weights = weightTemplate.getCCTemplate();
+				break;
+		}
+		
+		// 0 - 2 are basics
+		// 3 - 6 are abilities
+		for (int i = 0; i < 3; i++) {
+			basicAttackList.get(i).weight = weights.get(i);
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			abilitiesList.get(i).weight = weights.get(i + 3);
+		}
+		
+	}
+	
+	public ArrayList<Attacks> getStaticAIMove() {
+		ArrayList<Attacks> movesToMake = new ArrayList<>();
+		
+		ArrayList<Attacks> possibleBasicAttacks = new ArrayList<>();
+		int basicTotal = 0;
+		for (Attacks attack : basicAttackList) {
+			if (attack.getHardCap() && attack.getSoftCap()) {
+				possibleBasicAttacks.add(attack);
+				basicTotal += attack.weight;
+			}
+		}
+		
+		ArrayList<Attacks> possibleAbilities = new ArrayList<>();
+		int abilitiesTotal = 0;
+		for (Attacks attack : abilitiesList) {
+			if (attack.getHardCap() && attack.getSoftCap()) {
+				possibleAbilities.add(attack);
+				abilitiesTotal += attack.weight;
+			}
+		}	
+		
+		Random random = new Random();
+		int basicChoice = random.nextInt(basicTotal);
+		int abilitesChoice = 0;
+		if (abilitiesTotal != 0) {
+			 abilitesChoice = random.nextInt(abilitiesTotal);
+		}
+		
+		int total = 0;
+		int count = 0;
+		while (total < basicChoice) {
+			total += possibleBasicAttacks.get(count).weight;
+			if (total >= basicChoice) {
+				break;
+			}
+			count++;
+		}
+		possibleBasicAttacks.get(count).chooseAITarget();
+		movesToMake.add(possibleBasicAttacks.get(count));
+		
+		// Cannot use an ability this turn
+		if (abilitiesTotal == 0) {
+			return movesToMake;
+		}
+		
+		total = 0;
+		count = 0;
+		while (total < abilitesChoice) {
+			total += possibleAbilities.get(count).weight;
+			if (total >= abilitesChoice) {
+				break;
+			}
+			count++;
+		}
+		possibleAbilities.get(count).chooseAITarget();
+		movesToMake.add(possibleAbilities.get(count));
+		
+		return movesToMake;
 	}
 	
 }

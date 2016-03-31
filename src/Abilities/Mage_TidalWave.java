@@ -23,11 +23,12 @@ public class Mage_TidalWave extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 
-		dealDamage(theAttacker, target, damage, critChance);
+		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
-		return "Used " + attackName + "\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 	
 	@Override
@@ -37,6 +38,15 @@ public class Mage_TidalWave extends Attacks {
 		for (Class player : alive) {
 			theTargets.add(player);
 		}
+	}
+
+	@Override
+	public void chooseAITarget() {
+		ArrayList<Class> alive= getAliveOpponents(theAttacker);
+		
+		for (Class player : alive) {
+			theTargets.add(player);
+		}	
 	}
 
 }

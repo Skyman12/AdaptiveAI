@@ -1,8 +1,9 @@
 package Abilities;
 
 
-import java.util.Random;
+import java.util.ArrayList;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -12,26 +13,24 @@ public class Warlock_Confusion extends Attacks {
 		super(attacker);
 		attackType = AttackType.ABILITIES;
 		
-		attackName = "Curse";
-		attackDescription = "Chose an enemy, deal flat damage plus a bonus.";
+		attackName = "Confusion";
+		attackDescription = "Chose an enemy, for the remainder of this turn and next turn, that enemy will randomly selected a target - including teammates.";
 	
-		damage = 25;
-		speed = 6;
-		cost = 60;
+		damage = 0;
+		speed = 4;
+		cost = 75;
 		critChance = 0;
 		numOfTargets = 1;
 	}
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		Random random = new Random();
-		int bonus = random.nextInt(10) + 15;
-		
-		int damageDealt = dealDamage(theAttacker, target, damage + bonus, critChance);
+		confuse(theAttacker, theTarget, damage, 2);
 
-		return "Used " + attackName + " on " + target.name + " -- It did " + damageDealt + " damage\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Confused target \n";
 	}
 
 
@@ -39,5 +38,14 @@ public class Warlock_Confusion extends Attacks {
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
 	}
-
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.PRIEST);
+		parameters.add(AIAttackOptions.BARD);
+		parameters.add(AIAttackOptions.MAGE);
+		parameters.add(AIAttackOptions.RANDOM);
+		chooseAttackTargetAI(parameters);
+	}
 }

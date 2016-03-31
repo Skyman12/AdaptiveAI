@@ -32,4 +32,18 @@ public class Warrior_Recharge extends Attacks {
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
 	}
+	
+	@Override
+	public boolean getSoftCap() {
+		if (theAttacker.baseEnergy - theAttacker.currentEnergy > 30 && theAttacker.baseShield - theAttacker.currentShield > 30) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
+	}
 }

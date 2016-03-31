@@ -145,6 +145,28 @@ public class CharacterElement extends Elements {
 		}
 	}
 	
+	public void remove() {
+		super.remove();
+		
+		btnSpell1.setVisible(false);
+		btnSpell2.setVisible(false);
+		btnSpell3.setVisible(false);
+		btnSpell4.setVisible(false);
+		btnBasic1.setVisible(false);
+		btnBasic2.setVisible(false);
+		btnBasic3.setVisible(false);
+		
+		for (JButton button : spellButtonSet) {
+			button.setVisible(false);
+		}
+		
+
+		for (JButton button : basicAttacksButtonSet) {
+			button.setVisible(false);
+		}
+		
+	}
+	
 	private void buildButtonListeners() {
 		btnSpell1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

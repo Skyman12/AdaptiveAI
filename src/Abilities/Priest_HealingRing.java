@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import General.AttackType;
@@ -24,11 +25,12 @@ public class Priest_HealingRing extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
-		restore(20, 0, 0, target);
+		restore(20, 0, 0, theTarget);
 		
-		return "Used " + attackName + " on " + target.name + "\n";
+		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 	
 	@Override
@@ -58,6 +60,11 @@ public class Priest_HealingRing extends Attacks {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
 	}
 
 }

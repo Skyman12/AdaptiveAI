@@ -11,13 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Classes.Mage;
+import Classes.Priest;
 import Classes.Rogue;
+import Classes.Warlock;
 import Classes.Warrior;
 import General.Attacks;
 import General.BoardManager;
 import General.Class;
 import General.Game;
+import General.PlayerType;
 import General.Team;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class GameScreen extends JFrame {
 
@@ -59,16 +64,16 @@ public class GameScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		team1List = new ArrayList<>();
-		team1List.add(new Mage(Team.TEAM1));
-		team1List.add(new Warrior(Team.TEAM1));
-		team1List.add(new Rogue(Team.TEAM1));
-		team1List.add(new Warrior(Team.TEAM1));
+		team1List.add(new Mage(Team.TEAM1, PlayerType.HUMAN));
+		team1List.add(new Warrior(Team.TEAM1, PlayerType.HUMAN));
+		team1List.add(new Warlock(Team.TEAM1, PlayerType.HUMAN));
+		team1List.add(new Priest(Team.TEAM1, PlayerType.HUMAN));
 		
 		team2List = new ArrayList<>();
-		team2List.add(new Mage(Team.TEAM2));
-		team2List.add(new Warrior(Team.TEAM2));
-		team2List.add(new Rogue(Team.TEAM2));
-		team2List.add(new Warrior(Team.TEAM2));
+		team2List.add(new Mage(Team.TEAM2, PlayerType.STATIC_AI));
+		team2List.add(new Warrior(Team.TEAM2, PlayerType.STATIC_AI));
+		team2List.add(new Warlock(Team.TEAM2, PlayerType.STATIC_AI));
+		team2List.add(new Priest(Team.TEAM2, PlayerType.STATIC_AI));
 		
 		allCharacters = new ArrayList<>();
 		allCharacters.addAll(team1List);
@@ -116,14 +121,45 @@ public class GameScreen extends JFrame {
 		btnProcessTurn = new JButton("Process Turn");
 		btnProcessTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.processRound();
+				if (!game.roundInProgress) {
+					game.startRound();
+				} else {
+					game.next();
+				}
+				
+				if (game.roundInProgress) {
+					btnProcessTurn.setText("Next Attack");
+				} else {
+					btnProcessTurn.setText("Process Turn");
+				}
+				update();
 			}
 		});
 		btnProcessTurn.setBounds(732, 447, 256, 76);
 		contentPane.add(btnProcessTurn);	
 		
+		JLabel lblWinningText = new JLabel("Winning Text");
+		lblWinningText.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblWinningText.setBounds(632, 406, 534, 155);
+		lblWinningText.setVisible(false);
+		contentPane.add(lblWinningText);
+		
 		addPlayers();
-		boardManager.addElements(playerElements, computerElements);
+		boardManager.addElements(playerElements, computerElements, lblWinningText, btnProcessTurn);
+	}
+	
+	private void update() {
+		for (CharacterElement c : playerElements) {
+			if (!c.className.alive) {
+				c.remove();
+			}
+		}
+		
+		for (ComputerCharacterElement c : computerElements) {
+			if (!c.className.alive) {
+				c.remove();
+			}
+		}
 	}
 	
 	private void addPlayers() {

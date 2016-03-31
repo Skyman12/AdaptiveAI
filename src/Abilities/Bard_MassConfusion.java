@@ -25,14 +25,15 @@ public class Bard_MassConfusion extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
 		Random random = new Random();
 		int confused = random.nextInt(2);
 		
-		confuse(theAttacker, target, damage, confused);	
+		confuse(theAttacker, theTarget, damage, confused);	
 
-		return "Used " + attackName + " on " + target.name + " -- Confused for " + confused + " turns\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- Confused for " + confused + " turns\n";
 	}
 
 
@@ -51,6 +52,11 @@ public class Bard_MassConfusion extends Attacks {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public void chooseAITarget() {
+		chooseTargetForAttack(theAttacker);
 	}
 
 }

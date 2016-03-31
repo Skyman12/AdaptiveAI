@@ -1,8 +1,10 @@
 package BasicAttacks;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
 import General.Class;
@@ -23,20 +25,31 @@ public class Warlock_Corruption extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if(!doBeginningActions(theAttacker, target)) return "No attack";
+		String result = doBeginningActions(theAttacker, target);
+		if (!result.equals("Success")) return result;
 		
 		Random random = new Random();
 		int bonus = random.nextInt(10) + 5;
 		
-		int damageDealt = dealDamage(theAttacker, target, damage + bonus, critChance);
+		int damageDealt = dealDamage(theAttacker, theTarget, damage + bonus, critChance);
 
-		return "Used " + attackName + " on " + target.name + " -- It did " + damageDealt + " damage\n";
+		return "Used " + attackName + " on " + theTarget.name + " -- It did " + damageDealt + " damage\n";
 	}
 
 
 	@Override
 	public void chooseTargetForAttack(Class target) {
 		theTargets.add(target);
+	}
+	
+	@Override
+	public void chooseAITarget() {
+		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
+		parameters.add(AIAttackOptions.PRIEST);
+		parameters.add(AIAttackOptions.BARD);
+		parameters.add(AIAttackOptions.MAGE);
+		parameters.add(AIAttackOptions.RANDOM);
+		chooseAttackTargetAI(parameters);
 	}
 
 }

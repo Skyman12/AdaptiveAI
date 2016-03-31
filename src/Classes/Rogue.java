@@ -8,11 +8,15 @@ import BasicAttacks.Counter;
 import BasicAttacks.Rogue_Stab;
 import BasicAttacks.Rogue_TripleStab;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.RogueTemplate;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Rogue extends Class {
 	
-	public Rogue(Team whichTeam) {
+	public Rogue(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Rogue";
 		
@@ -37,6 +41,11 @@ public class Rogue extends Class {
 		abilitiesList.add(new Rogue_Flury(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new RogueTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }

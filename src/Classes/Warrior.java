@@ -8,11 +8,14 @@ import BasicAttacks.Counter;
 import BasicAttacks.Warrior_HeavySlash;
 import BasicAttacks.Warrior_QuickSlash;
 import General.Class;
+import General.PlayerType;
 import General.Team;
+import WeightTemplates.TemplateType;
+import WeightTemplates.WarriorTemplate;
 
 public class Warrior extends Class {
 	
-	public Warrior(Team whichTeam) {
+	public Warrior(Team whichTeam, PlayerType playerType) {
 		super();
 		name = "Warrior";
 		
@@ -37,6 +40,11 @@ public class Warrior extends Class {
 		abilitiesList.add(new Warrior_Fury(this));
 		
 		team = whichTeam;
+		this.playerType = playerType;
+		
+		weightTemplate = new WarriorTemplate();
+		
+		assignWeights(TemplateType.BALANCED);
 	}
 
 }
