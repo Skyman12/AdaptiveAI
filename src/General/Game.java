@@ -20,6 +20,16 @@ public class Game {
 		roundInProgress = false;
 	}
 	
+	public void resetGame() {
+		for (Class c : players) {
+			c.reset();
+		}
+		
+		gameOver = false;
+		roundInProgress = false;
+		roundAttacks.clear();;
+	}
+	
 	public void startRound() {
 		clear();
 		makeAIMoves();
@@ -44,22 +54,27 @@ public class Game {
 	}
 	
 	public void processRound() {
-		clear();
 		makeAIMoves();
 		orderAttacks();
-		roundInProgress = true;
 		
 		for (Attacks attack : roundAttacks) {
-			String string = attack.executeAttack();
-			printString(attack.theAttacker, string);
+			System.out.println(attack.executeAttack());
 			attack.theTargets.clear();
-			boardManager.updateBoard();
 			checkForGameOver();
-			if (gameOver) updateGameOver();
+			if (gameOver) {
+				System.out.println("Game Over: " + winningTeam.toString() + " wins.");
+				return;
+			}
 		}
 		
-		updateAfterRound();
-		roundInProgress = false;
+		System.out.println("---- end of round -----");
+		
+		roundAttacks.clear();
+		
+		for (Class c : players) {
+			c.processRound();
+		}
+		
 	}
 	
 	private void makeAIMoves() {
@@ -122,5 +137,11 @@ public class Game {
 		}
 		
 		boardManager.updateButtons();
+	}
+	
+	public void simulateGame() {
+		while (!gameOver) {
+			processRound();
+		}	
 	}
 }

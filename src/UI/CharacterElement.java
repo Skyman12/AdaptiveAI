@@ -94,6 +94,7 @@ public class CharacterElement extends Elements {
 		healthBar.setStringPainted(true);
 		healthBar.setString(healthBar.getValue() + "");
 		healthBar.setForeground(Color.red);
+		healthBar.setToolTipText("Total: " + className.baseHealth + "");
 		contentPane.add(healthBar);
 		
 		shieldBar.setBounds(x, 205 + y, 354, 20);
@@ -102,6 +103,7 @@ public class CharacterElement extends Elements {
 		shieldBar.setStringPainted(true);
 		shieldBar.setString(shieldBar.getValue() + "");
 		shieldBar.setForeground(Color.black);
+		shieldBar.setToolTipText("Total: " + className.baseShield + "");
 		contentPane.add(shieldBar);
 		
 		energyBar.setBounds(x, 230 + y, 354, 20);
@@ -110,6 +112,7 @@ public class CharacterElement extends Elements {
 		energyBar.setStringPainted(true);
 		energyBar.setString(energyBar.getValue() + "");
 		energyBar.setForeground(Color.blue);
+		energyBar.setToolTipText("Total: " + className.baseEnergy);
 		contentPane.add(energyBar);
 		
 		btnTarget.setBounds(x, 255 + y, 354, 50);

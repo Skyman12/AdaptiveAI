@@ -27,7 +27,7 @@ public class Priest_Savior extends Attacks {
 		String result = doBeginningActions(theAttacker, target);
 		if (!result.equals("Success")) return result;
 		
-		theTarget.invunerable = true;
+		theTarget.lastLife = true;
 		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}

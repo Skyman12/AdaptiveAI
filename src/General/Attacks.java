@@ -126,8 +126,12 @@ public abstract class Attacks implements Comparable<Attacks>{
 	}
 	
 	public String doBeginningActions(Class attacker, Class target) {
-		if (target == null || !attacker.alive) {
+		if (target == null) {
 			return "Invalid Action";
+		}
+		
+		if (!attacker.alive) {
+			return "Invalid Action - Attacker Dead\n";
 		}
 		
 		Class targetFound = target;
@@ -330,12 +334,14 @@ public abstract class Attacks implements Comparable<Attacks>{
 		Random random = new Random();
 		
 		ArrayList<Class> allies = getAliveAllies(theAttacker);
+		allies.add(theAttacker);
 		int allyChoice = random.nextInt(allies.size());
 		theTargets.add(allies.get(allyChoice));
 	}
 	
 	private void chooseLowestHealthTargetAlly() {
 		ArrayList<Class> allies = getAliveAllies(theAttacker);
+		allies.add(theAttacker);
 		Class theAlly = allies.get(0);
 		
 		for (Class ally : allies) {
@@ -349,6 +355,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 	
 	private void chooseLowestEnergyTargetAlly() {
 		ArrayList<Class> allies = getAliveAllies(theAttacker);
+		allies.add(theAttacker);
 		Class theAlly = allies.get(0);
 		
 		for (Class ally : allies) {
@@ -362,6 +369,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 	
 	private void chooseLowestShieldTargetAlly() {
 		ArrayList<Class> allies = getAliveAllies(theAttacker);
+		allies.add(theAttacker);
 		Class theAlly = allies.get(0);
 		
 		for (Class ally : allies) {

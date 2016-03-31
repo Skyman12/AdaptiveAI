@@ -31,6 +31,7 @@ public class ComputerCharacterElement extends Elements {
 		healthBar.setStringPainted(true);
 		healthBar.setString(healthBar.getValue() + "");
 		healthBar.setForeground(Color.red);
+		healthBar.setToolTipText("Total: " + className.baseHealth + "");
 		contentPane.add(healthBar);
 		
 		shieldBar.setBounds(x, 135 + y, 354, 20);
@@ -39,6 +40,7 @@ public class ComputerCharacterElement extends Elements {
 		shieldBar.setStringPainted(true);
 		shieldBar.setString(shieldBar.getValue() + "");
 		shieldBar.setForeground(Color.black);
+		shieldBar.setToolTipText("Total: " + className.baseShield + "");
 		contentPane.add(shieldBar);
 		
 		energyBar.setBounds(x, 160 + y, 354, 20);
@@ -47,6 +49,7 @@ public class ComputerCharacterElement extends Elements {
 		energyBar.setStringPainted(true);
 		energyBar.setString(energyBar.getValue() + "");
 		energyBar.setForeground(Color.blue);
+		energyBar.setToolTipText("Total: " + className.baseEnergy + "");
 		contentPane.add(energyBar);
 		
 		btnTarget.setBounds(x, 185 + y, 354, 50);

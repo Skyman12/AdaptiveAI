@@ -33,8 +33,14 @@ public abstract class Elements {
 	
 	public void update() {
 		healthBar.setValue(className.currentHealth);
+		healthBar.setStringPainted(true);
+		healthBar.setString(healthBar.getValue() + "");
 		shieldBar.setValue(className.currentShield);
+		shieldBar.setStringPainted(true);
+		shieldBar.setString(shieldBar.getValue() + "");
 		energyBar.setValue(className.currentEnergy);
+		energyBar.setStringPainted(true);
+		energyBar.setString(energyBar.getValue() + "");
 	}
 	
 	public void remove() {

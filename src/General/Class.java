@@ -78,6 +78,24 @@ public abstract class Class {
 		countered = false;
 	}
 	
+	public void reset() {
+		bonusCritChance = 0;
+		bonusCritChanceTurns = 0;
+		numberOfAttacksThisRound = 1;
+		turnsStunned = 0;
+		turnsConfused = 0;
+		protectedBy = this;
+		lastLife = false;
+		alive = true;
+		invunerable = false;
+		turnsCleansed = 0;
+		countered = false;
+		forcedTarget = null;
+		currentEnergy = baseEnergy;
+		currentHealth = baseHealth;
+		currentShield = baseShield;
+	}
+	
 	public void assignWeights(TemplateType type) {
 		ArrayList<Integer> weights = null;
 		switch (type) {
