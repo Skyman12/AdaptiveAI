@@ -1,4 +1,5 @@
 package General;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -96,8 +97,26 @@ public abstract class Class {
 		currentShield = baseShield;
 	}
 	
+	public int getCurrentPlayerScore() {	
+		int score = 0;
+		score += currentHealth;
+		score += (int) currentShield;
+		score += currentEnergy;
+		score += (int) bonusCritChance * .5;
+		score += (int) bonusCritChanceTurns * 25;
+		score += (int) turnsCleansed * 50; 
+		score += lastLife == true ? 20 : 0;
+		score += protectedBy != this ? 50 : 0;
+		
+		score -= (int) turnsStunned * 100;
+		score -= (int) turnsConfused * 80;
+		score -= forcedTarget != null ? 50 : 0;
+			
+		return score;	
+	}
+	
 	public void assignWeights(TemplateType type) {
-		ArrayList<Integer> weights = null;
+		ArrayList<Double> weights = null;
 		switch (type) {
 			case AGGRESSIVE:
 				weights = weightTemplate.getAggressiveTemplate();
@@ -125,6 +144,62 @@ public abstract class Class {
 		
 	}
 	
+	public void updateWeights(Attacks attack, int score) {
+		double scale = 1000.00;
+		
+		if (attack.attackType == AttackType.ABILITIES) {
+			for (Attacks theAttack : abilitiesList) {
+				if (attack == theAttack) {
+					if (score >= 0) {
+						theAttack.weight = Math.min(100.0, theAttack.weight + score / scale);
+					} else {
+						theAttack.weight = Math.max(0.0, theAttack.weight + score / scale);
+					}
+				} else {
+					if (score < 0) {
+						theAttack.weight = Math.min(100.0, theAttack.weight - score / ( 2 * scale));
+					} else {
+						theAttack.weight = Math.max(0.0, theAttack.weight - score /  ( 2 * scale));
+					}
+				}
+			}
+		} else {
+			for (Attacks theAttack : basicAttackList) {
+				if (attack == theAttack) {
+					if (score >= 0) {
+						theAttack.weight = Math.min(100.0, theAttack.weight + score / scale);
+					} else {
+						theAttack.weight = Math.max(0.0, theAttack.weight + score / scale);
+					}
+				} else {
+					if (score < 0) {
+						theAttack.weight = Math.min(100.0, theAttack.weight - score /  ( 3 * scale));
+					} else {
+						theAttack.weight = Math.max(0.0, theAttack.weight - score /  ( 3 * scale));
+					}
+				}
+			}
+		}
+		
+		try {
+			updateFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void updateFile() throws IOException {
+		FileWriter fileWriter = new FileWriter("ability_weights.txt");
+		
+		for (Attacks attack : basicAttackList) {
+			fileWriter.addNewWeight(attack, attack.weight);
+		}
+		
+		for (Attacks attack : abilitiesList) {
+			fileWriter.addNewWeight(attack, attack.weight);
+		}	
+	}
+
 	public ArrayList<Attacks> getStaticAIMove() {
 		ArrayList<Attacks> movesToMake = new ArrayList<>();
 		

@@ -5,44 +5,44 @@ import java.util.ArrayList;
 public class PriestTemplate extends WeightTemplate{
 
 	@Override
-	public ArrayList<Integer> getAggressiveTemplate() {
-		ArrayList<Integer> template = new ArrayList<Integer>();
-		template.add(70);
-		template.add(15);
-		template.add(15);
+	public ArrayList<Double> getAggressiveTemplate() {
+		ArrayList<Double> template = new ArrayList<Double>();
+		template.add(70.0);
+		template.add(15.0);
+		template.add(15.0);
 		
-		template.add(25);
-		template.add(25);
-		template.add(25);
-		template.add(25);
+		template.add(25.0);
+		template.add(25.0);
+		template.add(25.0);
+		template.add(25.0);
 		return template;
 	}
 
 	@Override
-	public ArrayList<Integer> getDefensiveTemplate() {
-		ArrayList<Integer> template = new ArrayList<Integer>();
-		template.add(10);
-		template.add(45);
-		template.add(45);
+	public ArrayList<Double> getDefensiveTemplate() {
+		ArrayList<Double> template = new ArrayList<Double>();
+		template.add(10.0);
+		template.add(45.0);
+		template.add(45.0);
 		
-		template.add(30);
-		template.add(20);
-		template.add(25);
-		template.add(25);
+		template.add(30.0);
+		template.add(20.0);
+		template.add(25.0);
+		template.add(25.0);
 		return template;
 	}
 
 	@Override
-	public ArrayList<Integer> getCCTemplate() {
-		ArrayList<Integer> template = new ArrayList<Integer>();
-		template.add(10);
-		template.add(20);
-		template.add(70);
+	public ArrayList<Double> getCCTemplate() {
+		ArrayList<Double> template = new ArrayList<Double>();
+		template.add(10.0);
+		template.add(20.0);
+		template.add(70.0);
 		
-		template.add(25);
-		template.add(25);
-		template.add(35);
-		template.add(15);
+		template.add(25.0);
+		template.add(25.0);
+		template.add(35.0);
+		template.add(15.0);
 		return template;
 	}
 

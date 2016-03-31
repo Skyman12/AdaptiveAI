@@ -12,16 +12,41 @@ public class Game {
 	public Team winningTeam;
 	public boolean roundInProgress;
 	
+	public ArrayList<Integer> team1Evaluations;
+	public ArrayList<Integer> team2Evaluations;
+	
 	public Game(BoardManager boardManager, ArrayList<Class> players) {
 		this.boardManager = boardManager;
 		this.roundAttacks = new ArrayList<>();
+		this.team1Evaluations = new ArrayList<>();;
+		this.team2Evaluations = new ArrayList<>();
 		this.players = players;
 		gameOver = false;
 		winningTeam = null;
 		roundInProgress = false;
 		roundCount = 0;
+		
+		assignRoundEvaulation();
 	}
 	
+	private void assignRoundEvaulation() {
+		int team1Score = 0;
+		int team2Score = 0;
+		
+		for (Class player : players) {
+			if (player.team == Team.TEAM1) {
+				team1Score += player.getCurrentPlayerScore();
+			} else {
+				team2Score += player.getCurrentPlayerScore();
+			}
+		}
+		
+		team1Evaluations.add(team1Score);
+		//System.out.println("Team 1 Score: " + team1Score);
+		team2Evaluations.add(team2Score);
+		//System.out.println("Team 2 Score: " +team2Score);
+	}
+
 	public void resetGame() {
 		for (Class c : players) {
 			c.reset();
@@ -69,6 +94,10 @@ public class Game {
 			}
 		}
 		
+		
+		assignRoundEvaulation();
+		updateDyanmicWeights();
+		
 		roundAttacks.clear();
 		roundCount++;
 		
@@ -84,9 +113,41 @@ public class Game {
 		
 	}
 	
+	private void updateDyanmicWeights() {
+		int team1Difference = team1Evaluations.get(team1Evaluations.size() - 2) - team1Evaluations.get(team1Evaluations.size() - 1);
+		int team2Difference = team2Evaluations.get(team2Evaluations.size() - 2) - team2Evaluations.get(team2Evaluations.size() - 1);
+		
+		Team winner;
+		
+		if (team1Difference == team2Difference) {
+			winner = Team.TIE_GAME;
+		} else if (team1Difference > team2Difference) {
+			winner = Team.TEAM2;
+		} else {
+			winner = Team.TEAM1;
+		}
+		
+		// Tie, no updates needed
+		if (winner == Team.TIE_GAME) {
+			return;
+		}
+		
+		
+		for (Attacks attack : roundAttacks) {
+			if (attack.theAttacker.playerType == PlayerType.ADAPTIVE_AI && attack.theAttacker.team == Team.TEAM1) { 
+				attack.theAttacker.updateWeights(attack, team2Difference - team1Difference);
+			}
+			
+			if (attack.theAttacker.playerType == PlayerType.ADAPTIVE_AI && attack.theAttacker.team == Team.TEAM2) { 
+				attack.theAttacker.updateWeights(attack, team1Difference - team2Difference);
+			}	
+		}
+			
+	}
+
 	private void makeAIMoves() {
 		for (Class player : players) {
-			if (player.playerType == PlayerType.STATIC_AI) {
+			if (player.playerType == PlayerType.STATIC_AI || player.playerType == PlayerType.ADAPTIVE_AI) {
 				roundAttacks.addAll(player.getStaticAIMove());
 			}
 		}

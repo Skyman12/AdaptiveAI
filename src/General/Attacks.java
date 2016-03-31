@@ -10,7 +10,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 	public int speed;
 	public int numOfTargets;
 	
-	public Integer weight;
+	public Double weight;
 	
 	public Class theAttacker;
 	public Class theTarget;
@@ -25,7 +25,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 	public Attacks(Class attacker) {
 		theAttacker = attacker;
 		theTargets = new ArrayList<>();
-		weight = 0;
+		weight = 0.0;
 	}
 	
 	protected abstract String attack(Class target);

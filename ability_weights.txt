@@ -1,0 +1,40 @@
+Taunt -- 26.03
+Protect -- 20.97
+Recharge -- 31.57
+Fury -- 19.19
+Quick Slash -- 35.48
+Heavy Slash -- 34.4
+Counter -- 30.11
+Life Drain -- 26.91
+Curse -- 23.44
+Confusion -- 27.17
+Blood Pact -- 24.48
+Life Tab -- 35.27
+Corruption -- 29.04
+Mind Zap -- 35.68
+Savior -- 25.0
+Life Transfer -- 25.0
+Holy Shield -- 25.0
+Healing Ring -- 25.0
+Smite -- 33.0
+Heal -- 33.0
+Cleanse -- 26.4
+Ice Lance -- 16.95
+Tidal Wave -- 18.45
+Freeze -- 18.32
+Meditate -- 46.25
+Fireball -- 30.92
+Flame Tunnel -- 33.21
+Thunder Strike -- 35.87
+Charm -- 22.71
+Buff Auora -- 26.35
+Mass Confusion -- 25.88
+Power Cord -- 30.51
+Shield Boost -- 37.07
+Energy Boost -- 32.42
+Stun -- 25.0
+Backstab -- 25.0
+Sneak -- 25.0
+Flury -- 25.0
+Stab -- 33.0
+Triple Stab -- 33.0
