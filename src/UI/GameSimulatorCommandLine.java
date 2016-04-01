@@ -33,7 +33,7 @@ public class GameSimulatorCommandLine {
 		Game game = new Game(new BoardManager(), players);
 		
 		GameSimulator gameSimluator = new GameSimulator(game);
-		gameSimluator.simulateManyGames(100);
+		gameSimluator.getAverageOfSimuations(1, 100000, true);
 
 	}
 

@@ -48,6 +48,10 @@ public abstract class Attacks implements Comparable<Attacks>{
 		
 		return string;
 	}
+	
+	public String toString() {
+		return attackName + " --  Attacker: " + theAttacker.name + " -- Team: " + theAttacker.team;
+	}
 
 	public int compareTo(Attacks o) {
 		return this.speed - o.speed;
@@ -99,6 +103,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 		
 		// Check if the target countered
 		if (attackType == AttackType.BASIC_ATTACK && target.countered) {
+			target.countered = false;
 			target = theAttacker;
 		}
 		

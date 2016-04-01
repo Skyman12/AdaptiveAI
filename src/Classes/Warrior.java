@@ -26,7 +26,7 @@ public class Warrior extends Class {
 		shieldRechargeRate = 10;
 		baseEnergy = 75;
 		currentEnergy = baseEnergy;
-		energyRechargeRate = 5;
+		energyRechargeRate = 15;
 		
 		bonusCritChance = 0;
 		

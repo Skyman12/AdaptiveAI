@@ -15,7 +15,7 @@ public class Warrior_HeavySlash extends Attacks {
 		attackName = "Heavy Slash";
 		attackDescription = "Choose an enemy, deal damage to that player.";
 	
-		damage = 25;
+		damage = 30;
 		speed = 7;
 		critChance = 50;
 		numOfTargets = 1;

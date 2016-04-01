@@ -15,9 +15,9 @@ public class Warrior_Fury extends Attacks {
 		attackName = "Fury";
 		attackDescription = "Randomly choose 2 enemies, deal damage to them";
 		
-		damage = 30;
+		damage = 20;
 		speed = 4;
-		cost = 50;
+		cost = 25;
 		critChance = 0;
 		numOfTargets = 0;
 		 

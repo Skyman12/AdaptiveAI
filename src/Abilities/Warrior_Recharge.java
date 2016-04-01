@@ -10,11 +10,11 @@ public class Warrior_Recharge extends Attacks {
 		attackType = AttackType.ABILITIES;
 		
 		attackName = "Recharge";
-		attackDescription = "+15 Shield, +15 Energy";
+		attackDescription = "+20 Shield";
 	
 		damage = 0;
-		speed = 1;
-		cost = 0;
+		speed = 6;
+		cost = 10;
 		critChance = 0;
 		numOfTargets = 0;
 	}
@@ -23,7 +23,7 @@ public class Warrior_Recharge extends Attacks {
 	protected String attack(Class target) {
 		if (theAttacker.turnsStunned > 0) return "No attack";
 		
-		restore(0, 15, 15, theAttacker);
+		restore(0, 20, 0, theAttacker);
 		
 		return "Used " + attackName + "\n";
 	}

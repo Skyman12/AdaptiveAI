@@ -18,7 +18,7 @@ public class Warlock_Confusion extends Attacks {
 	
 		damage = 0;
 		speed = 4;
-		cost = 75;
+		cost = 40;
 		critChance = 0;
 		numOfTargets = 1;
 	}

@@ -18,7 +18,7 @@ public class Warrior_Taunt extends Attacks {
 		
 		damage = 0;
 		speed = 1;
-		cost = 40;
+		cost = 20;
 		critChance = 0;
 		numOfTargets = 1;
 	}

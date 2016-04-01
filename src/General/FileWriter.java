@@ -28,17 +28,17 @@ public class FileWriter {
 		while (reader.hasNextLine()) {
 			Scanner lineReader = new Scanner(reader.nextLine()).useDelimiter(" -- ");
 			String next = lineReader.next();
-			if (!next.equals(attack.attackName)) {
+			if (!next.equals(attack.theAttacker.name + " : " + attack.attackName)) {
 				newFile.add(next + " -- " + lineReader.next().trim());
 			} else {
-				newFile.add(attack.attackName + " -- " + Math.floor(weight * 100) / 100);
+				newFile.add(attack.theAttacker.name + " : " + attack.attackName + " -- " + Math.floor(weight * 100) / 100);
 				spellFound = true;
 			}
 			lineReader.close();
 		}
 		
 		if (!spellFound) {
-			newFile.add(attack.attackName + " -- " + Math.floor(weight * 100) / 100);
+			newFile.add(attack.theAttacker.name + " : " + attack.attackName + " -- " + Math.floor(weight * 100) / 100);
 		}
 		
 		reader.close();

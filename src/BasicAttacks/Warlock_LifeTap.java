@@ -17,7 +17,7 @@ public class Warlock_LifeTap extends Attacks {
 		attackName = "Life Tab";
 		attackDescription = "Chose an enemy, deal damage to the enemy, restores between 10%-50% of damage dealt to self.";
 	
-		damage = 20;
+		damage = 10;
 		speed = 2;
 		critChance = 0;
 		numOfTargets = 1;

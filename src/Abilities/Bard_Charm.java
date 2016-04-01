@@ -17,7 +17,7 @@ public class Bard_Charm extends Attacks {
 	
 		damage = 0;
 		speed = 2;
-		cost = 50;
+		cost = 70;
 		critChance = 0;
 		numOfTargets = 1;
 	}

@@ -16,8 +16,8 @@ public class Bard_Cleanse extends Attacks {
 		attackDescription = "Choose a friendly, removes any stuns / confusion and prevents them from being stunned the rest of the turn.";
 	
 		damage = 0;
-		speed = 3;
-		cost = 50;
+		speed = 2;
+		cost = 40;
 		critChance = 0;
 		numOfTargets = 1;
 	}

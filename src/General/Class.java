@@ -7,6 +7,7 @@ import WeightTemplates.TemplateType;
 import WeightTemplates.WeightTemplate;
 
 public abstract class Class {
+	public static int powerChord = 0;
 	
 	public int baseHealth;
 	public int currentHealth;
@@ -41,6 +42,7 @@ public abstract class Class {
 	public String name;
 	
 	public WeightTemplate weightTemplate;
+	public TemplateType templateType;
 	
 	public PlayerType playerType;
 	
@@ -98,24 +100,29 @@ public abstract class Class {
 	}
 	
 	public int getCurrentPlayerScore() {	
+		if (!alive) {
+			return 0;
+		}
+		
 		int score = 0;
-		score += currentHealth * 4;
-		score += (int) currentShield * 3;
+		score += currentHealth * 2;
+		score += (int) currentShield * 1.5;
 		score += currentEnergy;
 		score += (int) bonusCritChance * .5;
 		score += (int) bonusCritChanceTurns * 25;
-		score += (int) turnsCleansed * 50; 
+		score += (int) turnsCleansed * 10; 
 		score += lastLife == true ? 20 : 0;
-		score += protectedBy != this ? 50 : 0;
+		score += protectedBy != this ? 40 : 0;
 		
-		score -= (int) turnsStunned * 100;
-		score -= (int) turnsConfused * 80;
-		score -= forcedTarget != null ? 50 : 0;
+		score -= (int) turnsStunned * 30;
+		score -= (int) turnsConfused * 10;
+		score -= forcedTarget != null ? 40 : 0;
 			
 		return score;	
 	}
 	
 	public void assignWeights(TemplateType type) {
+		templateType = type;
 		ArrayList<Double> weights = null;
 		switch (type) {
 			case AGGRESSIVE:
@@ -222,7 +229,7 @@ public abstract class Class {
 		}	
 		
 		Random random = new Random();
-		int basicChoice = random.nextInt(basicTotal);
+		int basicChoice = random.nextInt(Math.max(basicTotal, 1));
 		int abilitesChoice = 0;
 		if (abilitiesTotal != 0) {
 			 abilitesChoice = random.nextInt(abilitiesTotal);

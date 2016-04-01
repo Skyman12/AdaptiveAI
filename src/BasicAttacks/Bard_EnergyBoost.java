@@ -27,7 +27,7 @@ public class Bard_EnergyBoost extends Attacks {
 		String result = doBeginningActions(theAttacker, target);
 		if (!result.equals("Success")) return result;
 		
-		restore(0, 0, 20, theTarget);	
+		restore(0, 0, 10, theTarget);	
 		
 		return "Used " + attackName + " on " + theTarget.name + " -- Restored energy\n";
 	}

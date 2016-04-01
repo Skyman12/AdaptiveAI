@@ -45,7 +45,7 @@ public class Game {
 		team1Evaluations.add(team1Score);
 		//System.out.println("Team 1 Score: " + team1Score);
 		team2Evaluations.add(team2Score);
-		//System.out.println("Team 2 Score: " +team2Score);
+		//System.out.println("Team 2 Score: " + team2Score);
 	}
 
 	public void resetGame() {
@@ -212,16 +212,10 @@ public class Game {
 			processRound();
 		}	
 		
-		try {
-			updateFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		return winningTeam;
 	}
 
-	private void updateFile() throws IOException {
+	public void updateFile() throws IOException {
 		for (Class player : players) {
 			player.updateFile();
 		}
