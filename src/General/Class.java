@@ -152,15 +152,17 @@ public abstract class Class {
 		
 	}
 	
-	public void updateTargetWeights(Attacks attack, double changeAmount) {
+	public void updateTargetWeights(Attacks attack, int score) {
 		if (attack.attackParameters.size() < 2) {
 			return;
 		} 
 		
+		double scale = 1000.00;
 		double change = 0.0;
 		
 		for (AIAttackOptions option : attack.attackParameters.keySet()) {
 			if (option == attack.lastUsedParameter) {
+				double changeAmount = score / scale;
 				if (changeAmount >= 0) {
 					if (attack.attackParameters.get(option) + changeAmount > 100.00) {
 						change = 100.00 - attack.attackParameters.get(option);
@@ -186,7 +188,7 @@ public abstract class Class {
 		change = (-1.0 * change);
 		for (AIAttackOptions option : attack.attackParameters.keySet()) {
 			if (option != attack.lastUsedParameter) {
-				changeAmount =  change / remaining;
+				double changeAmount =  change / remaining;
 				
 				if (changeAmount >= 0) {
 					if (attack.attackParameters.get(option) + changeAmount > 100.00) {

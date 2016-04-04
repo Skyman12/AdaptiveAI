@@ -230,7 +230,12 @@ public abstract class Attacks implements Comparable<Attacks>{
 		
 		double x = 0.0;
 		for (Double d : attackOptions.values()) {
+			System.out.println(d + " -- ");
 			x += d;
+		}
+		
+		if (Double.isNaN(x)) {
+			System.out.println("here");
 		}
 		
 		int choice = random.nextInt((int) x);

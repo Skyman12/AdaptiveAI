@@ -137,10 +137,12 @@ public class Game {
 		for (Attacks attack : roundAttacks) {
 			if (attack.theAttacker.playerType == PlayerType.ADAPTIVE_AI && attack.theAttacker.team == Team.TEAM1) { 
 				attack.theAttacker.updateWeights(attack, team2Difference - team1Difference);
+				attack.theAttacker.updateTargetWeights(attack, team2Difference - team1Difference);
 			}
 			
 			if (attack.theAttacker.playerType == PlayerType.ADAPTIVE_AI && attack.theAttacker.team == Team.TEAM2) { 
 				attack.theAttacker.updateWeights(attack, team1Difference - team2Difference);
+				attack.theAttacker.updateTargetWeights(attack, team1Difference - team2Difference);
 			}	
 		}
 			

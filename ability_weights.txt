@@ -1,17 +1,17 @@
-Warrior : Taunt -- 0.93
-Warrior : Protect -- 0.99
-Warrior : Recharge -- 97.67
-Warrior : Fury -- 0.13
-Warrior : Quick Slash -- 0.04
-Warrior : Heavy Slash -- 99.06
-Warrior : Counter -- 0.89
-Warlock : Life Drain -- 0.02
-Warlock : Curse -- 0.02
-Warlock : Confusion -- 0.0
-Warlock : Blood Pact -- 99.91
-Warlock : Life Tab -- 0.16
-Warlock : Corruption -- 96.15
-Warlock : Mind Zap -- 3.68
+Warrior : Taunt -- 25.0
+Warrior : Protect -- 25.0
+Warrior : Recharge -- 25.0
+Warrior : Fury -- 25.0
+Warrior : Quick Slash -- 33.0
+Warrior : Heavy Slash -- 33.0
+Warrior : Counter -- 34.0
+Warlock : Life Drain -- 25.0
+Warlock : Curse -- 25.0
+Warlock : Confusion -- 25.0
+Warlock : Blood Pact -- 25.0
+Warlock : Life Tab -- 33.0
+Warlock : Corruption -- 33.0
+Warlock : Mind Zap -- 34.0
 Priest : Savior -- 25.0
 Priest : Life Transfer -- 25.0
 Priest : Holy Shield -- 25.0
@@ -19,20 +19,20 @@ Priest : Healing Ring -- 25.0
 Priest : Smite -- 33.0
 Priest : Heal -- 33.0
 Priest : Cleanse -- 34.0
-Mage : Ice Lance -- -0.01
-Mage : Tidal Wave -- 100.0
-Mage : Freeze -- 0.0
-Mage : Meditate -- 0.0
-Mage : Fireball -- 36.93
-Mage : Flame Tunnel -- 62.44
-Mage : Thunder Strike -- 0.61
-Bard : Charm -- 0.53
-Bard : Cleanse -- 95.85
-Bard : Buff Auora -- 2.87
-Bard : Mass Confusion -- 0.2
-Bard : Power Cord -- 17.71
-Bard : Shield Boost -- 82.15
-Bard : Energy Boost -- 0.12
+Mage : Ice Lance -- 25.0
+Mage : Tidal Wave -- 25.0
+Mage : Freeze -- 25.0
+Mage : Meditate -- 25.0
+Mage : Fireball -- 33.0
+Mage : Flame Tunnel -- 33.0
+Mage : Thunder Strike -- 34.0
+Bard : Charm -- 25.0
+Bard : Cleanse -- 25.0
+Bard : Buff Auora -- 25.0
+Bard : Mass Confusion -- 25.0
+Bard : Power Cord -- 33.0
+Bard : Shield Boost -- 33.0
+Bard : Energy Boost -- 34.0
 Rogue : Stun -- 25.0
 Rogue : Backstab -- 25.0
 Rogue : Sneak -- 25.0
