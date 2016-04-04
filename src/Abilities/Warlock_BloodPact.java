@@ -29,6 +29,8 @@ public class Warlock_BloodPact extends Attacks {
 		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
 		restore(damageDealt, 0, 0, theAttacker);
+		
+		effectivness = 35;
 
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}

@@ -35,6 +35,8 @@ public class Warrior_Taunt extends Attacks {
 		
 		restore(0, 10, 0, theAttacker);
 		theTarget.forcedTarget = theAttacker;
+		
+		effectivness = 25;
 				
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}

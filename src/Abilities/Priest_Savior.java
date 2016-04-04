@@ -32,6 +32,8 @@ public class Priest_Savior extends Attacks {
 		
 		theTarget.lastLife = true;
 		
+		effectivness = 40;
+		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 	

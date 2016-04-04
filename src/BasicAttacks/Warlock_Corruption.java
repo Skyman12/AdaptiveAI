@@ -39,6 +39,8 @@ public class Warlock_Corruption extends Attacks {
 		
 		int damageDealt = dealDamage(theAttacker, theTarget, damage + bonus, critChance);
 
+		effectivness = damageDealt;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- It did " + damageDealt + " damage\n";
 	}
 

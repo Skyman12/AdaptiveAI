@@ -1,18 +1,19 @@
 package UI;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Classes.Mage;
 import Classes.Priest;
-import Classes.Rogue;
 import Classes.Warlock;
 import Classes.Warrior;
 import General.Attacks;
@@ -21,8 +22,6 @@ import General.Class;
 import General.Game;
 import General.PlayerType;
 import General.Team;
-import javax.swing.JLabel;
-import java.awt.Font;
 
 public class GameScreen extends JFrame {
 

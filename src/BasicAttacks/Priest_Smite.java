@@ -30,7 +30,9 @@ public class Priest_Smite extends Attacks {
 		String result = doBeginningActions(theAttacker, target);
 		if (!result.equals("Success")) return result;
 		
-		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);	
+		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
+		
+		effectivness = damageDealt;
 		
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}

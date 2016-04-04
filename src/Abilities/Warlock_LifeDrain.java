@@ -38,6 +38,8 @@ public class Warlock_LifeDrain extends Attacks {
 		
 		restore((int) (damageDealt * .5), 0, 0, theAttacker);
 		
+		effectivness = damageDealt;
+		
 		return "Used " + attackName + " on " + theTarget.name + " --- Healed for " + (int) (damageDealt * .5) + "\n";
 	}
 

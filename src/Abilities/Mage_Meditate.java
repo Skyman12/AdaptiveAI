@@ -22,9 +22,13 @@ public class Mage_Meditate extends Attacks {
 	
 	@Override
 	protected String attack(Class target) {
-		if (theAttacker.turnsStunned > 0) return "No attack";
+		if (theAttacker.turnsStunned > 0) {
+			effectivness = 0;
+			return "No attack";
+		}
 		
-		restore(0, 5, 30, theAttacker);
+		restore(0, 30, 10000, theAttacker);
+		effectivness = 30;
 		
 		return "Used " + attackName + "\n";
 	}

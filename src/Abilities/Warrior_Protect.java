@@ -1,8 +1,5 @@
 package Abilities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
@@ -36,6 +33,8 @@ public class Warrior_Protect extends Attacks {
 		
 		restore(0, 10, 0, theAttacker);
 		target.protectedBy = theAttacker;
+		
+		effectivness = 30;
 		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}

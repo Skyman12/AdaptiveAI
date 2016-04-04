@@ -35,6 +35,8 @@ public class Rogue_Stun extends Attacks {
 		
 		stun (theAttacker, theTarget, damage, 2);
 		
+		effectivness = 18;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Stunned target \n";
 	}
 	

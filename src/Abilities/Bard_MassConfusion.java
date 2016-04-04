@@ -32,6 +32,8 @@ public class Bard_MassConfusion extends Attacks {
 		int confused = random.nextInt(2);
 		
 		confuse(theAttacker, theTarget, damage, confused);	
+		
+		effectivness = confused * 30;
 
 		return "Used " + attackName + " on " + theTarget.name + " -- Confused for " + confused + " turns\n";
 	}

@@ -33,6 +33,8 @@ public class Mage_Freeze extends Attacks {
 		
 		stun (theAttacker, theTarget, damage, 2);
 		
+		effectivness = 45;
+		
 		return "Used " + attackName + " on " + target.name + " -- Stunned target\n";
 	}
 

@@ -150,19 +150,19 @@ public class GameSimulator {
 	
 	public void printStats(int numberOfRuns) {
 		System.out.println("--------Simulation Complete ------------");
-		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simuations: " + team1Wins / numberOfRuns);
-		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simuations: " + team2Wins / numberOfRuns);
-		System.out.println("Average number of Ties over " + numberOfRuns + " simuations: " + tie / numberOfRuns);
+		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simulations: " + team1Wins / numberOfRuns);
+		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simulations: " + team2Wins / numberOfRuns);
+		System.out.println("Average number of Ties over " + numberOfRuns + " simulations: " + tie / numberOfRuns);
 		System.out.println("---------Turning Point Found------------");
-		System.out.println("Average turning point over " + numberOfRuns + " simuations: " + turningPoint / numberOfRuns);
+		System.out.println("Average turning point over " + numberOfRuns + " simulations: " + turningPoint / numberOfRuns);
 		System.out.println("---------Before Turning Point ---------------");
-		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simuations: " + team1WinsBeforeTurningPoint / numberOfRuns);
-		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simuations: " + team2WinsBeforeTurningPoint / numberOfRuns);
-		System.out.println("Average number of Ties over " + numberOfRuns + " simuations: " + tieBeforeTurningPoint / numberOfRuns);
+		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simulations: " + team1WinsBeforeTurningPoint / numberOfRuns);
+		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simulations: " + team2WinsBeforeTurningPoint / numberOfRuns);
+		System.out.println("Average number of Ties over " + numberOfRuns + " simulations: " + tieBeforeTurningPoint / numberOfRuns);
 		System.out.println("---------After Turning Point-----------------");
-		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simuations: " + team1WinsAfterTurningPoint / numberOfRuns);
-		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simuations: " + team2WinsAfterTurningPoint / numberOfRuns);
-		System.out.println("Average number of Ties over " + numberOfRuns + " simuations: " + tieAfterTurningPoint / numberOfRuns);
+		System.out.println("Average number of Team 1 Wins over " + numberOfRuns + " simulations: " + team1WinsAfterTurningPoint / numberOfRuns);
+		System.out.println("Average number of Team 2 Wins over " + numberOfRuns + " simulations: " + team2WinsAfterTurningPoint / numberOfRuns);
+		System.out.println("Average number of Ties over " + numberOfRuns + " simulations: " + tieAfterTurningPoint / numberOfRuns);
 	}
 	
 	private void addPlayers() {

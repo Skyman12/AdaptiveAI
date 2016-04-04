@@ -42,6 +42,8 @@ public class Warlock_LifeTap extends Attacks {
 		
 		restore((int) (damageDealt * percentHealed), 0, 0, theAttacker);
 		
+		effectivness = (int) (damageDealt * percentHealed);
+		
 		return "Used " + attackName + " on " + theTarget.name + " --- Healed for " + (int) (damageDealt * percentHealed) + "\n";
 	}
 

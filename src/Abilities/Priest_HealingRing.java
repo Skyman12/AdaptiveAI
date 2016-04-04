@@ -30,6 +30,8 @@ public class Priest_HealingRing extends Attacks {
 		
 		restore(20, 0, 0, theTarget);
 		
+		effectivness = 40;
+		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 	

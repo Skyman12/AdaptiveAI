@@ -27,6 +27,8 @@ public class Rogue_Sneak extends Attacks {
 		theAttacker.bonusCritChance += 50;
 		theAttacker.bonusCritChanceTurns = 2;
 		
+		effectivness = 30;
+		
 		return "Used " + attackName + "\n";
 	}
 	

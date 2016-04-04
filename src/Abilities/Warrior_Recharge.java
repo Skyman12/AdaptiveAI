@@ -25,6 +25,8 @@ public class Warrior_Recharge extends Attacks {
 		
 		restore(0, 20, 0, theAttacker);
 		
+		effectivness = 20;
+		
 		return "Used " + attackName + "\n";
 	}
 

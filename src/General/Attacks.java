@@ -12,6 +12,8 @@ public abstract class Attacks implements Comparable<Attacks>{
 	public int speed;
 	public int numOfTargets;
 	
+	public int effectivness;
+	
 	public Double weight;
 	
 	public Class theAttacker;
@@ -138,6 +140,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 	}
 	
 	public String doBeginningActions(Class attacker, Class target) {
+		effectivness = 0;
 		if (target == null) {
 			return "Invalid Action";
 		}
@@ -203,6 +206,11 @@ public abstract class Attacks implements Comparable<Attacks>{
 	}
 	
 	public void cleanse (Class attacker, Class target, int turnsCleansed) {
+		if (target.turnsCleansed > 0 || target.turnsConfused > 0) {
+			effectivness = 60;
+		} else {
+			effectivness = 20;
+		}
 		target.turnsStunned = 0;
 		target.turnsConfused = 0;
 		target.turnsCleansed = turnsCleansed;
@@ -230,18 +238,13 @@ public abstract class Attacks implements Comparable<Attacks>{
 		
 		double x = 0.0;
 		for (Double d : attackOptions.values()) {
-			System.out.println(d + " -- ");
 			x += d;
-		}
-		
-		if (Double.isNaN(x)) {
-			System.out.println("here");
 		}
 		
 		int choice = random.nextInt((int) x);
 		int total = 0;
 		int count = 0;
-		while (total < choice) {
+		while (total < choice && count < options.size() - 1) {
 			total += attackOptions.get(options.get(count));
 			if (total >= choice) {
 				break;
@@ -344,6 +347,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 			}
 			
 			if (targetsFound) {
+				lastUsedParameter = attackType;
 				return;
 			}
 			

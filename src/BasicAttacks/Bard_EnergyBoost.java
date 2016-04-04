@@ -32,6 +32,8 @@ public class Bard_EnergyBoost extends Attacks {
 		
 		restore(0, 0, 10, theTarget);	
 		
+		effectivness = 10;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Restored energy\n";
 	}
 	

@@ -39,8 +39,10 @@ public class Warlock_MindZap extends Attacks {
 		
 		if (stunned == 1) {
 			stun(theAttacker, target, damage, 1);
+			effectivness = 30;
 			return "Used " + attackName + " on " + theTarget.name + " -- Successful\n";
 		} else {
+			effectivness = 0;
 			return "Used " + attackName + " on " + theTarget.name + " -- Fail \n";
 		}
 	}

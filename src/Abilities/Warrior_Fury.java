@@ -30,6 +30,8 @@ public class Warrior_Fury extends Attacks {
 		
 		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
+		effectivness = damageDealt;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 	

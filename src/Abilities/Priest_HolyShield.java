@@ -34,6 +34,8 @@ public class Priest_HolyShield extends Attacks {
 		
 		restore(40, 40, 0, theAttacker);
 		
+		effectivness = 50;
+		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 

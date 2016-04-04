@@ -35,6 +35,8 @@ public class Warlock_Confusion extends Attacks {
 		if (!result.equals("Success")) return result;
 		
 		confuse(theAttacker, theTarget, damage, 2);
+		
+		effectivness = 40;
 
 		return "Used " + attackName + " on " + theTarget.name + " -- Confused target \n";
 	}

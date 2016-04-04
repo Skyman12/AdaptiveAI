@@ -28,6 +28,8 @@ public class Mage_TidalWave extends Attacks {
 
 		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
 		
+		effectivness = 60;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 	

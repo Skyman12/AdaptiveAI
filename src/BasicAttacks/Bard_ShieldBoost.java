@@ -32,6 +32,8 @@ public class Bard_ShieldBoost extends Attacks {
 		
 		restore(0, 10, 0, theTarget);	
 		
+		effectivness = 10;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Restored shield\n";
 	}
 	

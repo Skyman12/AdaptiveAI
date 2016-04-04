@@ -37,6 +37,8 @@ public class Priest_LifeTransfer extends Attacks {
 		
 		restore(30 + bonus, 0, 0, theAttacker);
 		
+		effectivness = 30 + bonus;
+		
 		return "Used " + attackName + " on " + theTarget.name + " --- Healed for " + bonus + 30 + "\n";
 	}
 

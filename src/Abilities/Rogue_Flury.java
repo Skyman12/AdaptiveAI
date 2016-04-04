@@ -41,6 +41,8 @@ public class Rogue_Flury extends Attacks {
 			damageDealt += dealDamage(theAttacker, theTarget, damage, critChance);
 		}
 		
+		effectivness = damageDealt;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}
 	

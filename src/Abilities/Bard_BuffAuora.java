@@ -30,6 +30,8 @@ public class Bard_BuffAuora extends Attacks {
 		
 		restore(0, 20, 20, theTarget);
 		
+		effectivness = 30;
+		
 		return "Used " + attackName + " on " + target.name + "\n";
 	}
 	

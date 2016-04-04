@@ -34,6 +34,8 @@ public class Counter extends Attacks {
 		
 		theTarget.countered = true;
 		
+		effectivness = 25;
+		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 

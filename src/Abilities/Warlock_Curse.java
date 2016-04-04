@@ -38,6 +38,8 @@ public class Warlock_Curse extends Attacks {
 		int bonus = random.nextInt(10) + 15;
 		
 		int damageDealt = dealDamage(theAttacker, theTarget, damage + bonus, critChance);
+		
+		effectivness = damageDealt;
 
 		return "Used " + attackName + " on " + theTarget.name + " -- It did " + damageDealt + " damage\n";
 	}

@@ -31,6 +31,8 @@ public class Rogue_Backstab extends Attacks {
 		if (!result.equals("Success")) return result;
 		
 		int damageDealt = dealDamage(theAttacker, theTarget, damage, critChance);
+		
+		effectivness = 60;
 	
 		return "Used " + attackName + " on " + theTarget.name + " -- Dealt " + damageDealt + " damage\n";
 	}

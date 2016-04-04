@@ -32,6 +32,8 @@ public class Priest_Heal extends Attacks {
 		
 		restore(15, 0, 0, theTarget);	
 		
+		effectivness = 25;
+		
 		return "Used " + attackName + " on " + theTarget.name + "\n";
 	}
 	

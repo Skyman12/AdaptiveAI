@@ -36,6 +36,8 @@ public class Bard_Charm extends Attacks {
 		
 		stun (theAttacker, theAttacker, damage, 3);
 		
+		effectivness = 50;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Stunned the target\n";
 	}
 	

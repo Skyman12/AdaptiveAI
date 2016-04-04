@@ -38,6 +38,8 @@ public class Bard_PowerCord extends Attacks {
 		
 		stun(theAttacker, theTarget, damage, stunned);	
 		
+		effectivness = 10 + 10 * stunned;
+		
 		return "Used " + attackName + " on " + theTarget.name + " -- Stunned for " + stunned + " turns\n";
 	}
 	
