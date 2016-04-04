@@ -2,6 +2,7 @@ package Abilities;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -21,6 +22,9 @@ public class Priest_HolyShield extends Attacks {
 		cost = 100;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 50.0);
+		attackParameters.put(AIAttackOptions.LOWEST_SHIELD, 50.0);
 	}
 	
 	@Override
@@ -54,10 +58,7 @@ public class Priest_HolyShield extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		parameters.add(AIAttackOptions.LOWEST_SHIELD);
-		chooseSupportTargetAI(parameters);
+		chooseSupportTargetAI(attackParameters);
 	}
 
 }

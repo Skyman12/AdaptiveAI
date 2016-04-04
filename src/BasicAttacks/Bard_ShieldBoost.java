@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import General.AIAttackOptions;
@@ -20,6 +21,8 @@ public class Bard_ShieldBoost extends Attacks {
 		speed = 5;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.LOWEST_SHIELD, 100.0);
 	}
 	
 	@Override
@@ -52,9 +55,7 @@ public class Bard_ShieldBoost extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.LOWEST_SHIELD);
-		chooseSupportTargetAI(parameters);
+		chooseSupportTargetAI(attackParameters);
 	}
 
 }

@@ -20,7 +20,7 @@ public class Warrior_Fury extends Attacks {
 		cost = 25;
 		critChance = 0;
 		numOfTargets = 0;
-		 
+		
 	}
 
 	@Override

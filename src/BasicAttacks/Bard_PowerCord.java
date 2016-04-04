@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import General.AIAttackOptions;
@@ -20,6 +21,11 @@ public class Bard_PowerCord extends Attacks {
 		speed = 2;
 		critChance = 0;
 		numOfTargets = 1;
+
+		attackParameters.put(AIAttackOptions.PRIEST, 25.0);
+		attackParameters.put(AIAttackOptions.BARD, 25.0);
+		attackParameters.put(AIAttackOptions.MAGE, 25.0);
+		attackParameters.put(AIAttackOptions.RANDOM, 25.0);
 	}
 	
 	@Override
@@ -42,12 +48,7 @@ public class Bard_PowerCord extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.PRIEST);
-		parameters.add(AIAttackOptions.BARD);
-		parameters.add(AIAttackOptions.MAGE);
-		parameters.add(AIAttackOptions.RANDOM);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

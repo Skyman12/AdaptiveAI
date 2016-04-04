@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -21,6 +22,10 @@ public class Warrior_Taunt extends Attacks {
 		cost = 20;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.WARLOCK, 33.0);
+		attackParameters.put(AIAttackOptions.ROGUE, 33.0);
+		attackParameters.put(AIAttackOptions.MAGE, 34.0);
 	}
 
 	@Override
@@ -41,11 +46,7 @@ public class Warrior_Taunt extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.WARLOCK);
-		parameters.add(AIAttackOptions.ROGUE);
-		parameters.add(AIAttackOptions.MAGE);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

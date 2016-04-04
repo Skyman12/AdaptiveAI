@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -19,6 +20,9 @@ public class Priest_Smite extends Attacks {
 		speed = 3;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.RANDOM, 50.0);
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 50.0);
 	}
 	
 	@Override
@@ -38,10 +42,7 @@ public class Priest_Smite extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.RANDOM);
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

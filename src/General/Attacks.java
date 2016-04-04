@@ -1,6 +1,8 @@
 package General;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 public abstract class Attacks implements Comparable<Attacks>{
 
@@ -22,10 +24,15 @@ public abstract class Attacks implements Comparable<Attacks>{
 	public String attackName;
 	public String attackDescription;
 	
+	public HashMap<AIAttackOptions, Double> attackParameters;
+	public AIAttackOptions lastUsedParameter;
+	
 	public Attacks(Class attacker) {
 		theAttacker = attacker;
 		theTargets = new ArrayList<>();
 		weight = 0.0;
+		
+		attackParameters = new HashMap<AIAttackOptions, Double>();
 	}
 	
 	protected abstract String attack(Class target);
@@ -212,14 +219,40 @@ public abstract class Attacks implements Comparable<Attacks>{
 		return attacker.name + " attacked " + target.name + " and dealt " + damage + "damage";
 	}
 	
-	public void chooseAttackTargetAI(ArrayList<AIAttackOptions> attackOptions) {
-		Random random = new Random();
-		int choice = random.nextInt(attackOptions.size());
+	public AIAttackOptions getAttackType(HashMap<AIAttackOptions, Double> attackOptions) {
+		if (attackOptions.size() == 0) {
+			return AIAttackOptions.RANDOM;
+		}
 		
-		AIAttackOptions attackType = attackOptions.get(choice);
+		Random random = new Random();
+		ArrayList<AIAttackOptions> options = new ArrayList<AIAttackOptions>();
+		options.addAll(attackOptions.keySet());
+		
+		double x = 0.0;
+		for (Double d : attackOptions.values()) {
+			x += d;
+		}
+		
+		int choice = random.nextInt((int) x);
+		int total = 0;
+		int count = 0;
+		while (total < choice) {
+			total += attackOptions.get(options.get(count));
+			if (total >= choice) {
+				break;
+			}
+			count++;
+		}
+		
+		return options.get(count);
+	}
+	
+	public void chooseAttackTargetAI(HashMap<AIAttackOptions, Double> attackOptions) {
 		boolean targetsFound = false;
 		
 		while (!targetsFound) {
+			AIAttackOptions attackType = getAttackType(attackOptions);
+			
 			switch (attackType) {
 				case RANDOM: 
 					chooseTargetRandomEnemy();
@@ -252,27 +285,20 @@ public abstract class Attacks implements Comparable<Attacks>{
 			}
 			
 			if (targetsFound) {
+				lastUsedParameter = attackType;
 				return;
 			}
 			
-			attackOptions.remove(choice);
-			if (attackOptions.size() == 0) {
-				attackType = AIAttackOptions.RANDOM;
-			} else {
-				choice = random.nextInt(attackOptions.size());
-				attackType = attackOptions.get(choice);
-			}
+			attackOptions.remove(attackType);
 		}
 	}
 	
-	public void chooseSupportTargetAI(ArrayList<AIAttackOptions> attackOptions) {
-		Random random = new Random();
-		int choice = random.nextInt(attackOptions.size());
-		
-		AIAttackOptions attackType = attackOptions.get(choice);
+	public void chooseSupportTargetAI(HashMap<AIAttackOptions, Double> attackOptions) {
 		boolean targetsFound = false;
 		
 		while (!targetsFound) {
+			AIAttackOptions attackType = getAttackType(attackOptions);
+			
 			switch (attackType) {
 				case RANDOM: 
 					chooseTargetRandomAlly();
@@ -316,13 +342,7 @@ public abstract class Attacks implements Comparable<Attacks>{
 				return;
 			}
 			
-			attackOptions.remove(choice);
-			if (attackOptions.size() == 0) {
-				attackType = AIAttackOptions.RANDOM;
-			} else {
-				choice = random.nextInt(attackOptions.size());
-				attackType = attackOptions.get(choice);
-			}
+			attackOptions.remove(attackType);
 		}
 		
 	}

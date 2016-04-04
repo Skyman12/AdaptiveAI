@@ -1,6 +1,7 @@
 package General;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import WeightTemplates.TemplateType;
@@ -151,42 +152,180 @@ public abstract class Class {
 		
 	}
 	
+	public void updateTargetWeights(Attacks attack, double changeAmount) {
+		if (attack.attackParameters.size() < 2) {
+			return;
+		} 
+		
+		double change = 0.0;
+		
+		for (AIAttackOptions option : attack.attackParameters.keySet()) {
+			if (option == attack.lastUsedParameter) {
+				if (changeAmount >= 0) {
+					if (attack.attackParameters.get(option) + changeAmount > 100.00) {
+						change = 100.00 - attack.attackParameters.get(option);
+					} else {
+						change = changeAmount;
+					}
+					
+					attack.attackParameters.put(option, attack.attackParameters.get(option) + change);
+				} 
+				else {		
+					if (attack.attackParameters.get(option) + changeAmount < 0.00) {
+						change = 0.00 - attack.attackParameters.get(option);
+					} else {
+						change = changeAmount;
+					}
+					
+					attack.attackParameters.put(option, attack.attackParameters.get(option) + change);
+				}
+			}
+		}
+		
+		int remaining = attack.attackParameters.size() - 1;
+		change = (-1.0 * change);
+		for (AIAttackOptions option : attack.attackParameters.keySet()) {
+			if (option != attack.lastUsedParameter) {
+				changeAmount =  change / remaining;
+				
+				if (changeAmount >= 0) {
+					if (attack.attackParameters.get(option) + changeAmount > 100.00) {
+						change = 100.00 - attack.attackParameters.get(option);
+					} else {
+						change = changeAmount;
+					}
+					
+					attack.attackParameters.put(option, attack.attackParameters.get(option) + change);
+				} 
+				else {		
+					if (attack.attackParameters.get(option) + changeAmount < 0.00) {
+						change = 0.00 - attack.attackParameters.get(option);
+					} else {
+						change = changeAmount;
+					}
+					
+					attack.attackParameters.put(option, attack.attackParameters.get(option) + change);
+				}
+	
+				remaining--;
+			}
+		}
+		
+		rebalanceAttackChoices(attack);
+	}
+	
 	public void updateWeights(Attacks attack, int score) {
 		double scale = 1000.00;
+		double change = 0.0;
 		
 		if (attack.attackType == AttackType.ABILITIES) {
 			for (Attacks theAttack : abilitiesList) {
 				if (attack == theAttack) {
-					if (score >= 0) {
-						theAttack.weight = Math.min(100.0, theAttack.weight + score / scale);
-					} else {
-						theAttack.weight = Math.max(0.0, theAttack.weight + score / scale);
+					double changeAmount = score / scale;
+					if (changeAmount >= 0) {
+						if (theAttack.weight + changeAmount > 100.00) {
+							change = 100.00 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
+					} 
+					else {
+						if (theAttack.weight + changeAmount < 0.0) {
+							change = 0 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
 					}
-				} else {
-					if (score < 0) {
-						theAttack.weight = Math.min(100.0, theAttack.weight - score / ( 2 * scale));
-					} else {
-						theAttack.weight = Math.max(0.0, theAttack.weight - score /  ( 2 * scale));
+				}
+			}
+			
+			double remaining = 3.0;
+			change = (-1.0 * change);
+			for (Attacks theAttack : abilitiesList) {
+				if (attack != theAttack) {
+					double changeAmount =  change / remaining;
+					if (changeAmount >= 0) {
+						if (theAttack.weight + changeAmount > 100.00) {
+							change = 100.00 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
+					} 
+					else {
+						if (theAttack.weight + changeAmount < 0.0) {
+							change = 0 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
 					}
+					
+					remaining--;
 				}
 			}
 		} else {
 			for (Attacks theAttack : basicAttackList) {
 				if (attack == theAttack) {
-					if (score >= 0) {
-						theAttack.weight = Math.min(100.0, theAttack.weight + score / scale);
-					} else {
-						theAttack.weight = Math.max(0.0, theAttack.weight + score / scale);
-					}
-				} else {
-					if (score < 0) {
-						theAttack.weight = Math.min(100.0, theAttack.weight - score /  ( 3 * scale));
-					} else {
-						theAttack.weight = Math.max(0.0, theAttack.weight - score /  ( 3 * scale));
+					double changeAmount = score / scale;
+					if (changeAmount >= 0) {
+						if (theAttack.weight + changeAmount > 100.00) {
+							change = 100.00 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
+					} 
+					else {
+						if (theAttack.weight + changeAmount < 0.0) {
+							change = 0 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
 					}
 				}
 			}
+			
+			double remaining = 2.0;
+			change = (-1.0 * change);
+			for (Attacks theAttack : basicAttackList) {
+				if (attack != theAttack) {
+					double changeAmount =  change / remaining;
+					if (changeAmount >= 0) {
+						if (theAttack.weight + changeAmount > 100.00) {
+							change = 100.00 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
+					} 
+					else {
+						if (theAttack.weight + changeAmount < 0.0) {
+							change = 0 - theAttack.weight;
+						} else {
+							change = changeAmount;
+						}
+						
+						theAttack.weight += change;
+					}
+					
+					remaining--;
+				}
+			}
 		}
+			
+		rebalance(basicAttackList);
+		rebalance(abilitiesList);
 		
 //		try {
 //			updateFile();
@@ -195,6 +334,35 @@ public abstract class Class {
 //		}
 	}
 	
+	private void rebalance(ArrayList<Attacks> attacks) {
+		double total = 0.0;
+		for (Attacks attack : attacks) {
+			total += attack.weight;
+		}
+		
+		if (total > 100.0) {
+			Random random = new Random();
+			int choice = random.nextInt(attacks.size());
+			attacks.get(choice).weight -= total - 100.0;
+		}
+	}	
+	
+	private void rebalanceAttackChoices(Attacks attack) {
+		double total = 0.0;
+		for (Double d : attack.attackParameters.values()) {
+			total += d;
+		}
+		
+		if (total > 100.0) {
+			Random random = new Random();
+			ArrayList<AIAttackOptions> list = new ArrayList<AIAttackOptions>();
+			list.addAll(attack.attackParameters.keySet());
+			int choice = random.nextInt(list.size());
+			attack.attackParameters.put(list.get(choice), 
+					attack.attackParameters.get(list.get(choice)) - (total - 100.0));
+		}
+	}
+
 	public void updateFile() throws IOException {
 		FileWriter fileWriter = new FileWriter("ability_weights.txt");
 		
@@ -231,7 +399,7 @@ public abstract class Class {
 		Random random = new Random();
 		int basicChoice = random.nextInt(Math.max(basicTotal, 1));
 		int abilitesChoice = 0;
-		if (abilitiesTotal != 0) {
+		if (abilitiesTotal >= 1) {
 			 abilitesChoice = random.nextInt(abilitiesTotal);
 		}
 		

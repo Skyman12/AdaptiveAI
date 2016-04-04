@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -19,6 +20,11 @@ public class Counter extends Attacks {
 		speed = 0;
 		critChance = 0;
 		numOfTargets = 0;
+		
+		attackParameters.put(AIAttackOptions.ROGUE, 25.0);
+		attackParameters.put(AIAttackOptions.WARRIOR, 25.0);
+		attackParameters.put(AIAttackOptions.MAGE, 25.0);
+		attackParameters.put(AIAttackOptions.WARLOCK, 25.0);
 	}
 	
 	@Override
@@ -38,12 +44,7 @@ public class Counter extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.ROGUE);
-		parameters.add(AIAttackOptions.WARRIOR);
-		parameters.add(AIAttackOptions.MAGE);
-		parameters.add(AIAttackOptions.WARLOCK);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

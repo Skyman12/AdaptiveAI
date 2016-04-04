@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -20,6 +21,8 @@ public class Priest_Savior extends Attacks {
 		cost = 80;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 100.0);
 	}
 	
 	@Override
@@ -52,9 +55,7 @@ public class Priest_Savior extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		chooseSupportTargetAI(parameters);
+		chooseSupportTargetAI(attackParameters);
 	}
 
 }

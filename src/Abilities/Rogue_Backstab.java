@@ -1,7 +1,5 @@
 package Abilities;
 
-import java.util.ArrayList;
-
 import General.AIAttackOptions;
 import General.AttackType;
 import General.Attacks;
@@ -20,6 +18,11 @@ public class Rogue_Backstab extends Attacks {
 		cost = 50;
 		critChance = 50;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.PRIEST, 25.0);
+		attackParameters.put(AIAttackOptions.BARD, 25.0);
+		attackParameters.put(AIAttackOptions.MAGE, 25.0);
+		attackParameters.put(AIAttackOptions.RANDOM, 25.0);
 	}
 
 	@Override
@@ -39,11 +42,6 @@ public class Rogue_Backstab extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.PRIEST);
-		parameters.add(AIAttackOptions.BARD);
-		parameters.add(AIAttackOptions.MAGE);
-		parameters.add(AIAttackOptions.RANDOM);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 }

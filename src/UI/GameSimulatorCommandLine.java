@@ -1,19 +1,17 @@
 package UI;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import Classes.Bard;
 import Classes.Mage;
-import Classes.Priest;
 import Classes.Warlock;
 import Classes.Warrior;
 import General.BoardManager;
+import General.Class;
 import General.Game;
 import General.GameSimulator;
 import General.PlayerType;
 import General.Team;
-import General.Class;
 
 public class GameSimulatorCommandLine {
 
@@ -33,7 +31,7 @@ public class GameSimulatorCommandLine {
 		Game game = new Game(new BoardManager(), players);
 		
 		GameSimulator gameSimluator = new GameSimulator(game);
-		gameSimluator.getAverageOfSimuations(1, 100000, true);
+		gameSimluator.getAverageOfSimuations(10, 10000, true);
 
 	}
 

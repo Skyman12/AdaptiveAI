@@ -1,6 +1,7 @@
 package BasicAttacks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -19,6 +20,12 @@ public class Warrior_HeavySlash extends Attacks {
 		speed = 7;
 		critChance = 50;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.PRIEST, 20.0);
+		attackParameters.put(AIAttackOptions.BARD, 20.0);
+		attackParameters.put(AIAttackOptions.MAGE, 20.0);
+		attackParameters.put(AIAttackOptions.RANDOM, 20.0);
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 20.0);
 	}
 	
 	@Override
@@ -38,13 +45,7 @@ public class Warrior_HeavySlash extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.PRIEST);
-		parameters.add(AIAttackOptions.BARD);
-		parameters.add(AIAttackOptions.MAGE);
-		parameters.add(AIAttackOptions.RANDOM);
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

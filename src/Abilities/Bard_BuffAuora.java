@@ -19,6 +19,8 @@ public class Bard_BuffAuora extends Attacks {
 		cost = 75;
 		critChance = 0;
 		numOfTargets = 0;
+		
+		
 	}
 	
 	@Override

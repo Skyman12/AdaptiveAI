@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -20,6 +21,12 @@ public class Mage_IceLance extends Attacks {
 		cost = 80;
 		critChance = 40;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.PRIEST, 20.0);
+		attackParameters.put(AIAttackOptions.BARD, 20.0);
+		attackParameters.put(AIAttackOptions.MAGE, 20.0);
+		attackParameters.put(AIAttackOptions.RANDOM, 20.0);
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 20.0);
 	}
 	
 	@Override
@@ -39,13 +46,7 @@ public class Mage_IceLance extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.PRIEST);
-		parameters.add(AIAttackOptions.BARD);
-		parameters.add(AIAttackOptions.MAGE);
-		parameters.add(AIAttackOptions.RANDOM);
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		chooseAttackTargetAI(parameters);
+		chooseAttackTargetAI(attackParameters);
 	}
 
 }

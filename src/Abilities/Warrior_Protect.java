@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import General.AIAttackOptions;
 import General.AttackType;
@@ -20,6 +21,12 @@ public class Warrior_Protect extends Attacks {
 		cost = 20;
 		critChance = 0;
 		numOfTargets = 1;
+		
+		attackParameters.put(AIAttackOptions.LOWEST_HEALTH, 20.0);
+		attackParameters.put(AIAttackOptions.LOWEST_SHIELD, 20.0);
+		attackParameters.put(AIAttackOptions.PRIEST, 20.0);
+		attackParameters.put(AIAttackOptions.BARD, 20.0);
+		attackParameters.put(AIAttackOptions.MAGE, 20.0);
 	}
 	
 	@Override
@@ -40,13 +47,7 @@ public class Warrior_Protect extends Attacks {
 	
 	@Override
 	public void chooseAITarget() {
-		ArrayList<AIAttackOptions> parameters = new ArrayList<>();
-		parameters.add(AIAttackOptions.LOWEST_HEALTH);
-		parameters.add(AIAttackOptions.LOWEST_SHIELD);
-		parameters.add(AIAttackOptions.PRIEST);
-		parameters.add(AIAttackOptions.BARD);
-		parameters.add(AIAttackOptions.MAGE);
-		chooseSupportTargetAI(parameters);
+		chooseSupportTargetAI(attackParameters);
 	}
 
 }
